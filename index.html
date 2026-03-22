@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CALUD.IO — Tu presencia digital en salud</title>
+  <meta name="description" content="Páginas web profesionales para médicos, odontólogos, kinesiólogos, nutricionistas y psicólogos en Argentina. Más pacientes, más turnos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #070d1a;
+      --surface: #0f1c2e;
+      --border: #1e3048;
+      --accent: #00c2ff;
+      --accent2: #0077ff;
+      --text: #e8f0fe;
+      --muted: #7a90a8;
+      --gradient: linear-gradient(135deg, #00c2ff, #0077ff);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(7,13,26,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: .9rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 1.3rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    nav a { color: var(--muted); text-decoration: none; font-size: .9rem; margin-left: 1.5rem; transition: color .2s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
+
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 1.5rem 4rem; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(ellipse, rgba(0,119,255,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,194,255,.08); border: 1px solid rgba(0,194,255,.25);
+      color: var(--accent); font-size: .8rem; font-weight: 600;
+      padding: .35rem 1rem; border-radius: 99px; margin-bottom: 1.5rem; letter-spacing: .04em;
+    }
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.2rem; }
+    .hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--muted); max-width: 580px; margin: 0 auto 2.5rem; }
+    .btn-primary {
+      display: inline-block; background: var(--gradient); color: #fff; font-weight: 700;
+      padding: .9rem 2.2rem; border-radius: 8px; text-decoration: none; font-size: 1rem;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-block; color: var(--text); border: 1px solid var(--border);
+      padding: .85rem 2rem; border-radius: 8px; text-decoration: none; font-size: 1rem;
+      margin-left: 1rem; transition: border-color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); }
+
+    .stats {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      padding: 2.5rem 1.5rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: .85rem; color: var(--muted); margin-top: .2rem; }
+
+    section { padding: 5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .section-tag { color: var(--accent); font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .75rem; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+    h2 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .sub { color: var(--muted); font-size: 1.05rem; max-width: 540px; margin-bottom: 3rem; }
+
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem;
+      transition: border-color .25s, transform .2s;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .card-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(0,194,255,.1); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.1rem; }
+    .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
+    .card p { color: var(--muted); font-size: .92rem; }
+
+    .prof-grid { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .prof-pill { background: var(--surface); border: 1px solid var(--border); padding: .55rem 1.1rem; border-radius: 99px; font-size: .9rem; transition: border-color .2s; }
+    .prof-pill:hover { border-color: var(--accent); }
+
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+    .step { display: flex; gap: 1rem; }
+    .step-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: .9rem; color: #fff; }
+    .step h4 { font-weight: 700; margin-bottom: .3rem; }
+    .step p { color: var(--muted); font-size: .9rem; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .plan {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem;
+      position: relative;
+    }
+    .plan.featured { border-color: var(--accent); }
+    .plan-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gradient); color: #fff; font-size: .75rem; font-weight: 700; padding: .25rem .9rem; border-radius: 99px; white-space: nowrap; }
+    .plan-name { font-weight: 700; font-size: 1.1rem; margin-bottom: .25rem; }
+    .plan-price { font-size: 2rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .plan-period { color: var(--muted); font-size: .85rem; }
+    .plan-desc { color: var(--muted); font-size: .9rem; margin: 1rem 0; }
+    .plan-features { list-style: none; margin-bottom: 1.5rem; }
+    .plan-features li { font-size: .9rem; padding: .3rem 0; color: var(--muted); }
+    .plan-features li::before { content: '✓ '; color: var(--accent); font-weight: 700; }
+
+    .cta-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; padding: 5rem 1.5rem; }
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { color: var(--muted); margin-bottom: 2rem; }
+
+    .contact-form { max-width: 500px; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: .4rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); padding: .7rem 1rem; border-radius: 8px; font-size: .95rem;
+      font-family: inherit; outline: none; transition: border-color .2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group select option { background: var(--surface); color: var(--text); }
+
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--border); }
+
+    .wa-float {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      width: 56px; height: 56px; border-radius: 50%; background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 1.6rem; box-shadow: 0 4px 16px rgba(37,211,102,.4);
+      transition: transform .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+
+    @media (max-width: 600px) {
+      .btn-ghost { margin-left: 0; margin-top: .75rem; display: block; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">CALUD.IO</div>
+  <div>
+    <a href="#servicios">Servicios</a>
+    <a href="#precios">Precios</a>
+    <a href="#contacto" class="nav-cta">Quiero mi web</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Especialistas en salud digital</div>
+  <h1>Tu consultorio merece<br><span>una web profesional</span></h1>
+  <p>Creamos páginas web para profesionales de la salud en Argentina. Diseño moderno, turnos online y más pacientes desde el primer mes.</p>
+  <div>
+    <a href="#contacto" class="btn-primary">Quiero mi web</a>
+    <a href="#servicios" class="btn-ghost">Ver más</a>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat-item"><div class="stat-number">+900</div><div class="stat-label">Profesionales relevados</div></div>
+  <div class="stat-item"><div class="stat-number">48hs</div><div class="stat-label">Tiempo de entrega</div></div>
+  <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Adaptado a móvil</div></div>
+  <div class="stat-item"><div class="stat-number">$0</div><div class="stat-label">Para empezar</div></div>
+</div>
+
+<section id="servicios">
+  <div class="section-tag">Lo que hacemos</div>
+  <h2>Todo lo que necesitás<br><span>para estar en internet</span></h2>
+  <p class="sub">Sin tecnicismos, sin complicaciones. Tu web lista para funcionar.</p>
+  <div class="cards">
+    <div class="card"><div class="card-icon">🎨</div><h3>Diseño profesional</h3><p>Página a tu medida, con tu foto, especialidades y horarios. Moderna y confiable desde el primer vistazo.</p></div>
+    <div class="card"><div class="card-icon">📅</div><h3>Turnos online</h3><p>Tus pacientes reservan turno 24/7 sin llamarte. Integración con WhatsApp o agenda propia.</p></div>
+    <div class="card"><div class="card-icon">📍</div><h3>Google Maps</h3><p>Aparecés en las búsquedas locales cuando alguien busca tu especialidad cerca tuyo.</p></div>
+    <div class="card"><div class="card-icon">📱</div><h3>100% mobile</h3><p>El 80% de tus pacientes te busca desde el celular. Tu web se ve perfecta en cualquier pantalla.</p></div>
+    <div class="card"><div class="card-icon">🔒</div><h3>Dominio + Hosting</h3><p>Nos encargamos de todo: nombre de dominio, certificado SSL y hosting incluido.</p></div>
+    <div class="card"><div class="card-icon">🚀</div><h3>Entrega en 48 hs</h3><p>Completás un formulario, nosotros armamos tu web y en dos días ya estás online.</p></div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="section-tag">Especialidades</div>
+  <h2>Trabajamos con <span>todos los profesionales</span> de la salud</h2><br>
+  <div class="prof-grid">
+    <div class="prof-pill">🦷 Odontólogos</div>
+    <div class="prof-pill">🧠 Psicólogos</div>
+    <div class="prof-pill">🥗 Nutricionistas</div>
+    <div class="prof-pill">💪 Kinesiólogos</div>
+    <div class="prof-pill">👁️ Oftalmólogos</div>
+    <div class="prof-pill">🫀 Cardiólogos</div>
+    <div class="prof-pill">🩺 Clínicos</div>
+    <div class="prof-pill">👶 Pediatras</div>
+    <div class="prof-pill">🦴 Traumatólogos</div>
+    <div class="prof-pill">+ más especialidades</div>
+  </div>
+</section>
+
+<section id="proceso">
+  <div class="section-tag">Cómo funciona</div>
+  <h2>Estar online nunca<br><span>fue tan fácil</span></h2>
+  <p class="sub">Cuatro pasos simples y tu web está lista.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div><h4>Nos contactás</h4><p>Completás el formulario de abajo o nos escribís por WhatsApp.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div><h4>Te hacemos preguntas</h4><p>Te pedimos foto, especialidades, horarios y zona de atención.</p></div></div>
+    <div class="step"><div class="step-num">3</div><div><h4>Armamos tu web</h4><p>En 48 horas tenés una vista previa para aprobar.</p></div></div>
+    <div class="step"><div class="step-num">4</div><div><h4>Publicamos</h4><p>Subimos tu web al dominio elegido y empezás a recibir pacientes.</p></div></div>
+  </div>
+</section>
+
+<section id="precios">
+  <div class="section-tag">Planes</div>
+  <h2>Precios <span>claros y directos</span></h2>
+  <p class="sub">Sin sorpresas. Elegís el plan que se adapta a tu situación.</p>
+  <div class="pricing-grid">
+    <div class="plan">
+      <div class="plan-name">Básico</div>
+      <div class="plan-price">$35.000</div>
+      <div class="plan-period">pago único</div>
+      <p class="plan-desc">Para empezar a tener presencia online ya.</p>
+      <ul class="plan-features">
+        <li>Diseño personalizado</li>
+        <li>Sección de servicios</li>
+        <li>Botón WhatsApp</li>
+        <li>Adaptado a móvil</li>
+        <li>Dominio + hosting 1 año</li>
+      </ul>
+      <a href="#contacto" class="btn-primary" style="width:100%;text-align:center;display:block;">Empezar</a>
+    </div>
+    <div class="plan featured">
+      <div class="plan-badge">Más elegido</div>
+      <div class="plan-name">Profesional</div>
+      <div class="plan-price">$25.000</div>
+      <div class="plan-period">/ mes</div>
+      <p class="plan-desc">Web + soporte continuo + actualizaciones incluidas.</p>
+      <ul class="plan-features">
+        <li>Todo lo del Básico</li>
+        <li>Formulario de turnos</li>
+        <li>Integración Google Maps</li>
+        <li>Actualizaciones mensuales</li>
+        <li>Soporte por WhatsApp</li>
+      </ul>
+      <a href="#contacto" class="btn-primary" style="width:100%;text-align:center;display:block;">Empezar</a>
+    </div>
+    <div class="plan">
+      <div class="plan-name">PRO + IA</div>
+      <div class="plan-price">$55.000</div>
+      <div class="plan-period">/ mes</div>
+      <p class="plan-desc">Con bot inteligente que atiende pacientes 24/7.</p>
+      <ul class="plan-features">
+        <li>Todo lo del Profesional</li>
+        <li>Bot IA por WhatsApp</li>
+        <li>Responde consultas automático</li>
+        <li>Agenda turnos sin intervención</li>
+        <li>Reportes mensuales</li>
+      </ul>
+      <a href="#contacto" class="btn-primary" style="width:100%;text-align:center;display:block;">Empezar</a>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="section-tag">Oferta de lanzamiento</div>
+  <h2>Primera web <span>sin costo de diseño</span></h2>
+  <p>Solo abonás dominio + hosting. El diseño va por nuestra cuenta.</p>
+  <a href="#contacto" class="btn-primary">Quiero la mía</a>
+</div>
+
+<section id="contacto">
+  <div class="section-tag">Contacto</div>
+  <h2>Empezá hoy,<br><span>en 48 hs estás online</span></h2>
+  <p class="sub">Completá el formulario y te contactamos a la brevedad.</p>
+  <form class="contact-form" name="contacto" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+    <input type="hidden" name="form-name" value="contacto">
+    <p style="display:none;"><input name="bot-field"></p>
+    <div class="form-group"><label>Nombre completo</label><input type="text" name="nombre" placeholder="Dr. Juan García" required></div>
+    <div class="form-group">
+      <label>Especialidad</label>
+      <select name="especialidad" required>
+        <option value="">Seleccioná tu especialidad</option>
+        <option>Odontólogo/a</option><option>Psicólogo/a</option><option>Nutricionista</option>
+        <option>Kinesiólogo/a</option><option>Médico clínico</option><option>Pediatra</option>
+        <option>Otra especialidad</option>
+      </select>
+    </div>
+    <div class="form-group"><label>WhatsApp o email</label><input type="text" name="contacto" placeholder="+54 9 11 1234-5678" required></div>
+    <div class="form-group"><label>Zona de atención</label><input type="text" name="zona" placeholder="Ej: Palermo, CABA"></div>
+    <div class="form-group">
+      <label>¿Tenés web actualmente?</label>
+      <select name="web_actual">
+        <option>No tengo web</option><option>Sí, en Wix / similar</option><option>Sí, quiero mejorarla</option>
+      </select>
+    </div>
+    <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:inherit;">
+      Enviar — quiero mi web
+    </button>
+  </form>
+</section>
+
+<footer>
+  <strong>CALUD.IO</strong> — Presencia digital para profesionales de la salud en Argentina · 2026
+</footer>
+
+<a href="https://wa.me/5491100000000?text=Hola%2C+quiero+info+sobre+una+web+para+mi+consultorio" class="wa-float" target="_blank" rel="noopener" title="Escribinos por WhatsApp">💬</a>
+
+<script>
+async function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+  try {
+    const data = new FormData(form);
+    await fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(data).toString() });
+    btn.textContent = 'Enviado! Te contactamos pronto.';
+  } catch {
+    btn.textContent = 'Enviar — quiero mi web';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
