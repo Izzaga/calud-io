@@ -1,0 +1,26 @@
+# Entorno
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Base de datos
+data/prospectos.db
+data/*.db
+
+# Output generado
+output/
+
+# Logs
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
