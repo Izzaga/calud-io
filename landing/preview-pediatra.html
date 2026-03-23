@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dra. Natalia Romero — Pediatra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --p:#ea580c; --pd:#c2410c; --pl:#fff7ed; --ac:#fb923c; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Inter',sans-serif; color:#1f2937; background:#f9fafb; }
+    a { color:inherit; text-decoration:none; }
+    .topbar { background:var(--pd); color:#fff; font-size:.78rem; padding:.45rem 1.5rem; display:flex; gap:1.5rem; flex-wrap:wrap; }
+    .topbar span { display:flex; align-items:center; gap:.4rem; opacity:.9; }
+    nav { background:#fff; border-bottom:1px solid #e5e7eb; padding:.9rem 1.5rem; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+    .nav-brand { font-family:'Lora',serif; font-size:1.2rem; font-weight:700; color:var(--p); }
+    .nav-brand span { font-size:.75rem; font-family:'Inter',sans-serif; font-weight:400; color:#6b7280; display:block; }
+    .nav-cta { background:var(--p); color:#fff; padding:.5rem 1.1rem; border-radius:6px; font-size:.85rem; font-weight:600; }
+    .hero { background:linear-gradient(135deg,var(--pd) 0%,var(--p) 60%,#f97316 100%); color:#fff; padding:3.5rem 1.5rem; }
+    .hero-inner { max-width:900px; margin:auto; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+    .hero h1 { font-family:'Lora',serif; font-size:2rem; font-weight:700; line-height:1.25; margin-bottom:.6rem; }
+    .hero .sub { font-size:1rem; opacity:.85; margin-bottom:1.4rem; }
+    .badge-row { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.6rem; }
+    .badge { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:20px; padding:.3rem .85rem; font-size:.78rem; font-weight:500; }
+    .hero-btns { display:flex; gap:.8rem; flex-wrap:wrap; }
+    .btn-primary { background:#fff; color:var(--pd); padding:.7rem 1.4rem; border-radius:7px; font-weight:700; font-size:.9rem; }
+    .btn-outline { border:2px solid rgba(255,255,255,.7); color:#fff; padding:.7rem 1.4rem; border-radius:7px; font-weight:600; font-size:.9rem; }
+    .hero-card { background:rgba(255,255,255,.12); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.2); border-radius:14px; padding:1.6rem; }
+    .stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .stat { text-align:center; }
+    .stat .val { font-family:'Lora',serif; font-size:1.8rem; font-weight:700; }
+    .stat .lbl { font-size:.75rem; opacity:.8; margin-top:.2rem; }
+    .stars { color:#fef08a; font-size:1rem; letter-spacing:1px; margin:.6rem 0 .3rem; text-align:center; }
+    .rating-note { font-size:.75rem; opacity:.75; text-align:center; }
+    section { padding:3rem 1.5rem; }
+    .sec-inner { max-width:900px; margin:auto; }
+    .sec-title { font-family:'Lora',serif; font-size:1.5rem; font-weight:700; color:var(--pd); margin-bottom:.4rem; }
+    .sec-line { width:48px; height:3px; background:var(--ac); border-radius:2px; margin-bottom:1.6rem; }
+    .svc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.2rem; }
+    .svc-card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:1.3rem 1.2rem; transition:box-shadow .2s,border-color .2s; }
+    .svc-card:hover { box-shadow:0 4px 16px rgba(234,88,12,.12); border-color:var(--ac); }
+    .svc-icon { width:40px; height:40px; background:var(--pl); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:.8rem; }
+    .svc-icon svg { width:20px; height:20px; stroke:var(--p); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .svc-name { font-weight:600; font-size:.92rem; color:var(--pd); margin-bottom:.3rem; }
+    .svc-desc { font-size:.82rem; color:#6b7280; line-height:1.5; }
+    .sobre { background:var(--pl); }
+    .sobre-inner { display:grid; grid-template-columns:1fr 2fr; gap:2.5rem; align-items:center; }
+    .avatar { width:120px; height:120px; background:var(--p); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:auto; }
+    .avatar span { font-family:'Lora',serif; font-size:2.8rem; font-weight:700; color:#fff; }
+    .sobre p { font-size:.93rem; color:#374151; line-height:1.7; }
+    .res-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.2rem; }
+    .res-card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:1.2rem; }
+    .res-stars { color:#f59e0b; font-size:.9rem; letter-spacing:1px; margin-bottom:.5rem; }
+    .res-text { font-size:.85rem; color:#374151; line-height:1.6; margin-bottom:.7rem; font-style:italic; }
+    .res-autor { font-size:.78rem; font-weight:600; color:var(--p); }
+    .hor-list { list-style:none; display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.6rem; }
+    .hor-list li { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:.6rem 1rem; font-size:.85rem; color:#374151; }
+    .hor-list li strong { color:var(--pd); font-weight:600; }
+    .contacto { background:var(--pd); color:#fff; text-align:center; }
+    .contacto .sec-title { color:#fff; }
+    .contacto p { opacity:.85; font-size:.92rem; margin-bottom:1.6rem; }
+    .contact-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .cta-wa { background:#25D366; color:#fff; padding:.75rem 1.5rem; border-radius:7px; font-weight:700; font-size:.9rem; display:flex; align-items:center; gap:.5rem; }
+    .cta-tel { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.4); color:#fff; padding:.75rem 1.5rem; border-radius:7px; font-weight:600; font-size:.9rem; }
+    .contact-detail { margin-top:1.6rem; font-size:.82rem; opacity:.7; }
+    footer { background:#111827; color:#9ca3af; text-align:center; padding:1.2rem; font-size:.78rem; }
+    footer a { color:var(--ac); }
+    .wa-float { position:fixed; bottom:1.5rem; right:1.5rem; z-index:200; width:54px; height:54px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(37,211,102,.4); }
+    .wa-float svg { width:28px; height:28px; fill:#fff; }
+    @media (max-width:640px) { .hero-inner,.sobre-inner { grid-template-columns:1fr; } .hero h1 { font-size:1.5rem; } }
+  </style>
+</head>
+<body>
+<div class="topbar">
+  <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Av. La Plata 1100, Caballito, CABA</span>
+  <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>011 4xxx-xxxx</span>
+  <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Lun–Vie 9:00–18:00 · Sab 9:00–12:00</span>
+</div>
+<nav>
+  <div class="nav-brand">Dra. Natalia Romero<span>Pediatra — Caballito, CABA</span></div>
+  <a class="nav-cta" href="#contacto">Pedir turno</a>
+</nav>
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>La salud de tu hijo en manos de una especialista</h1>
+      <p class="sub">Pediatria clinica con atencion calida, personalizada y foco en el desarrollo saludable desde el nacimiento.</p>
+      <div class="badge-row"><span class="badge">Pediatria general</span><span class="badge">Seguimiento del desarrollo</span><span class="badge">Vacunacion</span></div>
+      <div class="hero-btns"><a href="#contacto" class="btn-primary">Pedir turno</a><a href="#servicios" class="btn-outline">Ver servicios</a></div>
+    </div>
+    <div class="hero-card">
+      <div class="stat-grid">
+        <div class="stat"><div class="val">+9</div><div class="lbl">Anos de experiencia</div></div>
+        <div class="stat"><div class="val">+800</div><div class="lbl">Ninos atendidos</div></div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <div class="rating-note">5.0 · 57 reseñas en Google</div>
+    </div>
+  </div>
+</section>
+<section id="servicios">
+  <div class="sec-inner">
+    <div class="sec-title">Servicios</div>
+    <div class="sec-line"></div>
+    <div class="svc-grid">
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="svc-name">Consulta pediatrica</div><div class="svc-desc">Atencion clinica de enfermedades agudas y cronicas en ninos de 0 a 16 anos.</div></div>
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="svc-name">Control de crecimiento</div><div class="svc-desc">Seguimiento periodico del peso, talla y desarrollo psicomotor del nino.</div></div>
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="svc-name">Vacunacion</div><div class="svc-desc">Calendario de vacunas obligatorio y opcional, con registro y seguimiento.</div></div>
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="svc-name">Lactancia y alimentacion</div><div class="svc-desc">Acompanamiento en lactancia materna e introduccion de alimentos solidos.</div></div>
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="svc-name">Certificados medicos</div><div class="svc-desc">Certificados escolares, deportivos y de buena salud para tramites.</div></div>
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="svc-name">Orientacion a padres</div><div class="svc-desc">Guia y contension para padres en cada etapa del desarrollo del nino.</div></div>
+    </div>
+  </div>
+</section>
+<section class="sobre">
+  <div class="sec-inner sobre-inner">
+    <div><div class="avatar"><span>NR</span></div></div>
+    <div>
+      <div class="sec-title">Sobre la profesional</div>
+      <div class="sec-line"></div>
+      <p>Pediatra con consultorio en Caballito, especializada en el seguimiento del desarrollo infantil y la atencion de enfermedades agudas y cronicas en ninos. Me caracterizo por un trato calido y cercano, tanto con los ninos como con sus familias, generando un espacio de confianza desde la primera consulta.</p>
+    </div>
+  </div>
+</section>
+<section id="resenas">
+  <div class="sec-inner">
+    <div class="sec-title">Lo que dicen los padres</div>
+    <div class="sec-line"></div>
+    <div class="res-grid">
+      <div class="res-card"><div class="res-stars">★★★★★</div><p class="res-text">"La Dra. Romero es increible. Mi hijo le tiene miedo a los medicos y con ella siempre sale contento. Muy paciente, clara y dedicada. Toda la familia va con ella."</p><div class="res-autor">Veronica L.</div></div>
+      <div class="res-card"><div class="res-stars">★★★★★</div><p class="res-text">"Llevamos a nuestra beba desde que nacio y el seguimiento es impecable. Siempre disponible para consultas urgentes y con muy buen criterio clinico."</p><div class="res-autor">Matias y Sol G.</div></div>
+      <div class="res-card"><div class="res-stars">★★★★★</div><p class="res-text">"Tuvimos un episodio de bronquiolitis y la atencion fue excelente. Muy tranquilizadora para los papas y muy precisa en el diagnostico. La recomiendo sin dudas."</p><div class="res-autor">Florencia T.</div></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="sec-inner">
+    <div class="sec-title">Horarios de atencion</div>
+    <div class="sec-line"></div>
+    <ul class="hor-list">
+      <li><strong>Lunes:</strong> 9:00 – 18:00</li>
+      <li><strong>Martes:</strong> 9:00 – 18:00</li>
+      <li><strong>Miercoles:</strong> 9:00 – 18:00</li>
+      <li><strong>Jueves:</strong> 9:00 – 18:00</li>
+      <li><strong>Viernes:</strong> 9:00 – 17:00</li>
+      <li><strong>Sabado:</strong> 9:00 – 12:00</li>
+    </ul>
+  </div>
+</section>
+<section id="contacto" class="contacto">
+  <div class="sec-inner">
+    <div class="sec-title">Reservar turno</div>
+    <div class="sec-line" style="margin:auto .5rem auto auto;background:rgba(255,255,255,.4);"></div>
+    <p>Contactanos por WhatsApp o por telefono para coordinar la consulta de tu hijo.</p>
+    <div class="contact-btns">
+      <a href="#" class="cta-wa"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.524 5.835L0 24l6.332-1.505A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.001-1.371l-.36-.213-3.757.893.952-3.67-.234-.376A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>WhatsApp</a>
+      <a href="#" class="cta-tel">Llamar al consultorio</a>
+    </div>
+    <div class="contact-detail">Av. La Plata 1100, Caballito, CABA &nbsp;|&nbsp; Lun–Vie 9:00–18:00</div>
+  </div>
+</section>
+<footer>Sitio web desarrollado por <a href="https://caludio.netlify.app">CALUD.IO</a> &mdash; Soluciones digitales para profesionales de la salud</footer>
+<a class="wa-float" href="#" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.524 5.835L0 24l6.332-1.505A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.001-1.371l-.36-.213-3.757.893.952-3.67-.234-.376A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg></a>
+</body>
+</html>
