@@ -3,481 +3,244 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lampasona Kinesiología y Osteopatía — Kinesiólogo en Belgrano</title>
-  <meta name="description" content="Kinesiólogo en Belgrano. Kinesiólogo con consultorio en Belgrano, Buenos Aires. Especializado en rehabilitación física, tratamiento del dolor y recuperación de lesio">
+  <title>Lic. Valeria López — Kinesióloga</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --primary:      #0d7a5f;
-      --primary-dark: #095c47;
-      --primary-light:#d1fae5;
-      --text:    #1a1a2e;
-      --muted:   #5a6474;
-      --border:  #e8ecf0;
-      --bg:      #f7f9fc;
-      --surface: #ffffff;
+      --p: #0d7a5f;
+      --pd: #095c47;
+      --pl: #d1fae5;
+      --ac: #34d399;
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; font-size: 16px; }
-
-    /* ── TOPBAR ── */
-    .topbar {
-      background: var(--primary); color: #fff; text-align: center;
-      font-size: .8rem; padding: .45rem 1rem; letter-spacing: .02em;
-    }
-
-    /* ── NAV ── */
-    nav {
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      padding: 1.1rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 6px rgba(0,0,0,.05);
-    }
-    .nav-brand { display: flex; flex-direction: column; }
-    .nav-name { font-family: 'Lora', serif; font-weight: 600; font-size: 1.15rem; color: var(--primary); line-height: 1.2; }
-    .nav-prof { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-    .nav-cta {
-      background: var(--primary); color: #fff; padding: .6rem 1.4rem;
-      border-radius: 6px; text-decoration: none; font-weight: 500; font-size: .88rem;
-      transition: background .2s; white-space: nowrap;
-    }
-    .nav-cta:hover { background: var(--primary-dark); }
-
-    /* ── HERO ── */
-    .hero {
-      display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; align-items: center;
-      max-width: 1100px; margin: 0 auto; padding: 4rem 2rem;
-      gap: 4rem;
-    }
-    @media (max-width: 768px) { .hero { grid-template-columns: 1fr; min-height: auto; padding: 3rem 1.5rem; } }
-    .hero-text {}
-    .hero-eyebrow {
-      display: inline-block; color: var(--primary); font-size: .78rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem;
-      padding-bottom: .4rem; border-bottom: 2px solid var(--primary);
-    }
-    .hero h1 {
-      font-family: 'Lora', serif; font-size: clamp(2rem, 4.5vw, 3rem);
-      font-weight: 600; line-height: 1.2; margin-bottom: 1.2rem; color: var(--text);
-    }
-    .hero-subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 440px; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--primary); color: #fff; padding: .8rem 1.8rem;
-      border-radius: 6px; text-decoration: none; font-weight: 500; font-size: .95rem;
-      transition: background .2s, transform .15s; display: inline-block;
-    }
-    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
-    .btn-secondary {
-      border: 1.5px solid var(--border); color: var(--text); padding: .78rem 1.6rem;
-      border-radius: 6px; text-decoration: none; font-size: .95rem;
-      transition: border-color .2s; display: inline-block;
-    }
-    .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
-    .hero-rating { display: flex; align-items: center; gap: .6rem; margin-top: 1.8rem; }
-    .stars-display { color: var(--primary); font-size: 1rem; letter-spacing: 1px; }
-    .rating-text { font-size: .85rem; color: var(--muted); }
-
-    /* Hero visual */
-    .hero-visual {
-      background: linear-gradient(145deg, var(--primary-light) 0%, var(--primary) 100%);
-      border-radius: 24px; aspect-ratio: 4/5; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; padding: 2.5rem; color: #fff; text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .hero-visual::before {
-      content: ''; position: absolute; top: -60px; right: -60px;
-      width: 200px; height: 200px; border-radius: 50%;
-      background: rgba(255,255,255,.1);
-    }
-    .hero-visual::after {
-      content: ''; position: absolute; bottom: -40px; left: -40px;
-      width: 150px; height: 150px; border-radius: 50%;
-      background: rgba(255,255,255,.07);
-    }
-    .hero-initial {
-      font-family: 'Lora', serif; font-size: 5rem; font-weight: 600;
-      color: rgba(255,255,255,.9); line-height: 1; margin-bottom: 1rem; position: relative; z-index: 1;
-    }
-    .hero-visual-name { font-size: 1.1rem; font-weight: 500; position: relative; z-index: 1; }
-    .hero-visual-prof { font-size: .82rem; opacity: .8; margin-top: .3rem; position: relative; z-index: 1; text-transform: uppercase; letter-spacing: .06em; }
-    @media (max-width: 768px) { .hero-visual { display: none; } }
-
-    /* ── SECCIONES ── */
-    .section { padding: 5rem 0; }
-    .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-    .section-divider { border: none; border-top: 1px solid var(--border); }
-    .section-label { color: var(--primary); font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .8rem; }
-    .section-title { font-family: 'Lora', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600; margin-bottom: .75rem; line-height: 1.3; }
-    .section-sub { color: var(--muted); font-size: 1rem; max-width: 520px; margin-bottom: 2.5rem; }
-
-    /* ── SERVICIOS ── */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
-    .service-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem;
-      transition: box-shadow .25s, border-color .25s;
-    }
-    .service-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.07); border-color: var(--primary); }
-    .service-line { width: 32px; height: 3px; background: var(--primary); border-radius: 2px; margin-bottom: 1rem; }
-    .service-card h3 { font-size: .95rem; font-weight: 600; margin-bottom: .4rem; color: var(--text); }
-    .service-card p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
-
-    /* ── SOBRE MI ── */
-    .about-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
-    @media (max-width: 768px) { .about-layout { grid-template-columns: 1fr; gap: 2rem; } }
-    .about-sidebar {}
-    .about-avatar {
-      width: 100%; aspect-ratio: 1; border-radius: 16px;
-      background: linear-gradient(145deg, var(--primary-light), var(--primary));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Lora', serif; font-size: 4rem; font-weight: 600; color: #fff;
-      margin-bottom: 1.5rem;
-    }
-    .about-data-item { margin-bottom: .75rem; }
-    .about-data-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .15rem; }
-    .about-data-value { font-size: .9rem; font-weight: 500; color: var(--text); }
-    .about-content .section-title { margin-bottom: 1rem; }
-    .about-content p { color: var(--muted); margin-bottom: 1rem; line-height: 1.8; }
-    .about-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
-    .tag {
-      background: var(--primary-light); color: var(--primary-dark);
-      padding: .3rem .85rem; border-radius: 99px; font-size: .78rem; font-weight: 500;
-    }
-
-    /* ── RESEÑAS ── */
-    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.25rem; }
-    .review-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
-    }
-    .review-stars { color: var(--primary); font-size: .9rem; margin-bottom: .75rem; }
-    .review-text { font-size: .88rem; color: var(--muted); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
-    .review-author { font-size: .82rem; font-weight: 600; color: var(--text); }
-    .review-source { font-size: .75rem; color: var(--muted); }
-
-    /* ── HORARIOS ── */
-    .horario-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .5rem; }
-    .horario-item { display: flex; justify-content: space-between; padding: .6rem 1rem; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); font-size: .88rem; }
-    .horario-dia { font-weight: 500; text-transform: capitalize; }
-    .horario-horas { color: var(--muted); }
-
-    /* ── CONTACTO ── */
-    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-    @media (max-width: 768px) { .contact-layout { grid-template-columns: 1fr; } }
-    .contact-info-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
-    .contact-icon {
-      width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
-      background: var(--primary-light); display: flex; align-items: center; justify-content: center;
-    }
-    .contact-icon svg { width: 18px; height: 18px; stroke: var(--primary); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .contact-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: .2rem; }
-    .contact-value { font-size: .92rem; font-weight: 500; }
-    .cta-card {
-      background: var(--primary); color: #fff; border-radius: 16px; padding: 2.5rem;
-      text-align: center;
-    }
-    .cta-card h3 { font-family: 'Lora', serif; font-size: 1.4rem; margin-bottom: .75rem; }
-    .cta-card p { opacity: .85; font-size: .92rem; margin-bottom: 1.8rem; line-height: 1.6; }
-    .btn-white {
-      background: #fff; color: var(--primary); font-weight: 600; padding: .85rem 2rem;
-      border-radius: 8px; text-decoration: none; display: inline-block; font-size: .95rem;
-      transition: transform .15s;
-    }
-    .btn-white:hover { transform: translateY(-1px); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--text); color: #8892a4; padding: 2.5rem; text-align: center; font-size: .82rem;
-    }
-    footer strong { color: #fff; }
-    footer .powered { margin-top: .4rem; opacity: .5; font-size: .72rem; }
-
-    /* ── WA FLOAT ── */
-    .wa-float {
-      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
-      width: 54px; height: 54px; border-radius: 50%; background: #25D366;
-      display: flex; align-items: center; justify-content: center; text-decoration: none;
-      box-shadow: 0 4px 16px rgba(37,211,102,.35); transition: transform .2s;
-    }
-    .wa-float:hover { transform: scale(1.08); }
-    .wa-float svg { width: 26px; height: 26px; fill: #fff; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; color: #1f2937; background: #f9fafb; }
+    a { color: inherit; text-decoration: none; }
+    .topbar { background: var(--pd); color: #fff; font-size: .78rem; padding: .45rem 1.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .topbar span { display: flex; align-items: center; gap: .4rem; opacity: .9; }
+    nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: .9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .nav-brand { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700; color: var(--p); }
+    .nav-brand span { font-size: .75rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #6b7280; display: block; }
+    .nav-cta { background: var(--p); color: #fff; padding: .5rem 1.1rem; border-radius: 6px; font-size: .85rem; font-weight: 600; }
+    .hero { background: linear-gradient(135deg, var(--pd) 0%, var(--p) 60%, #059669 100%); color: #fff; padding: 3.5rem 1.5rem; }
+    .hero-inner { max-width: 900px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .hero h1 { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; line-height: 1.25; margin-bottom: .6rem; }
+    .hero .sub { font-size: 1rem; opacity: .85; margin-bottom: 1.4rem; }
+    .badge-row { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+    .badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: .3rem .85rem; font-size: .78rem; font-weight: 500; }
+    .hero-btns { display: flex; gap: .8rem; flex-wrap: wrap; }
+    .btn-primary { background: #fff; color: var(--pd); padding: .7rem 1.4rem; border-radius: 7px; font-weight: 700; font-size: .9rem; }
+    .btn-outline { border: 2px solid rgba(255,255,255,.7); color: #fff; padding: .7rem 1.4rem; border-radius: 7px; font-weight: 600; font-size: .9rem; }
+    .hero-card { background: rgba(255,255,255,.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); border-radius: 14px; padding: 1.6rem; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat { text-align: center; }
+    .stat .val { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; }
+    .stat .lbl { font-size: .75rem; opacity: .8; margin-top: .2rem; }
+    .stars { color: #fbbf24; font-size: 1rem; letter-spacing: 1px; margin: .6rem 0 .3rem; text-align: center; }
+    .rating-note { font-size: .75rem; opacity: .75; text-align: center; }
+    section { padding: 3rem 1.5rem; }
+    .sec-inner { max-width: 900px; margin: auto; }
+    .sec-title { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; color: var(--pd); margin-bottom: .4rem; }
+    .sec-line { width: 48px; height: 3px; background: var(--ac); border-radius: 2px; margin-bottom: 1.6rem; }
+    .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
+    .svc-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 1.3rem 1.2rem; transition: box-shadow .2s, border-color .2s; }
+    .svc-card:hover { box-shadow: 0 4px 16px rgba(13,122,95,.12); border-color: var(--ac); }
+    .svc-icon { width: 40px; height: 40px; background: var(--pl); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: .8rem; }
+    .svc-icon svg { width: 20px; height: 20px; stroke: var(--p); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .svc-name { font-weight: 600; font-size: .92rem; color: var(--pd); margin-bottom: .3rem; }
+    .svc-desc { font-size: .82rem; color: #6b7280; line-height: 1.5; }
+    .sobre { background: var(--pl); }
+    .sobre-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 2.5rem; align-items: center; }
+    .avatar { width: 120px; height: 120px; background: var(--p); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: auto; }
+    .avatar span { font-family: 'Lora', serif; font-size: 2.8rem; font-weight: 700; color: #fff; }
+    .sobre p { font-size: .93rem; color: #374151; line-height: 1.7; }
+    .res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+    .res-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 1.2rem; }
+    .res-stars { color: #f59e0b; font-size: .9rem; letter-spacing: 1px; margin-bottom: .5rem; }
+    .res-text { font-size: .85rem; color: #374151; line-height: 1.6; margin-bottom: .7rem; font-style: italic; }
+    .res-autor { font-size: .78rem; font-weight: 600; color: var(--p); }
+    .hor-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .6rem; }
+    .hor-list li { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: .6rem 1rem; font-size: .85rem; color: #374151; }
+    .hor-list li strong { color: var(--pd); font-weight: 600; }
+    .contacto { background: var(--pd); color: #fff; text-align: center; }
+    .contacto .sec-title { color: #fff; }
+    .contacto p { opacity: .85; font-size: .92rem; margin-bottom: 1.6rem; }
+    .contact-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-wa { background: #25D366; color: #fff; padding: .75rem 1.5rem; border-radius: 7px; font-weight: 700; font-size: .9rem; display: flex; align-items: center; gap: .5rem; }
+    .cta-tel { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.4); color: #fff; padding: .75rem 1.5rem; border-radius: 7px; font-weight: 600; font-size: .9rem; }
+    .contact-detail { margin-top: 1.6rem; font-size: .82rem; opacity: .7; }
+    footer { background: #111827; color: #9ca3af; text-align: center; padding: 1.2rem; font-size: .78rem; }
+    footer a { color: var(--ac); }
+    .wa-float { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200; width: 54px; height: 54px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(37,211,102,.4); }
+    .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+    @media (max-width: 640px) { .hero-inner, .sobre-inner { grid-template-columns: 1fr; } .hero h1 { font-size: 1.5rem; } }
   </style>
-  
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">Atención en Belgrano · Turnos con previo aviso</div>
+<div class="topbar">
+  <span>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Av. Cabildo 2150, Belgrano, CABA
+  </span>
+  <span>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    011 4xxx-xxxx
+  </span>
+  <span>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    Lun–Vie 8:00–20:00 · Sab 9:00–13:00
+  </span>
+</div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-brand">
-    <div class="nav-name">Lampasona Kinesiología y Osteopatía</div>
-    <div class="nav-prof">Kinesiólogo</div>
+    Lic. Valeria López
+    <span>Kinesióloga — Belgrano, CABA</span>
   </div>
-  
-  <a href="https://wa.me/54111530542141?text=Hola%2C+quiero+consultar+un+turno" class="nav-cta" target="_blank" rel="noopener">Solicitar turno</a>
-  
+  <a class="nav-cta" href="#contacto">Pedir turno</a>
 </nav>
 
-<!-- HERO -->
-<div style="background: var(--surface); border-bottom: 1px solid var(--border);">
-  <div class="hero">
-    <div class="hero-text">
-      <span class="hero-eyebrow">Kinesiólogo · Belgrano</span>
-      <h1>Lampasona Kinesiología y Osteopatía</h1>
-      <p class="hero-subtitle">Kinesiólogo con consultorio en Belgrano, Buenos Aires. Especializado en rehabilitación física, tratamiento del dolor y recuperación de lesiones. Trabajo con planes de tratamiento p</p>
-      <div class="hero-actions">
-        
-        <a href="https://wa.me/54111530542141?text=Hola%2C+quiero+consultar+un+turno" class="btn-primary" target="_blank" rel="noopener">Solicitar turno</a>
-        
-        <a href="#servicios" class="btn-secondary">Ver servicios</a>
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Rehabilitación física especializada en Belgrano</h1>
+      <p class="sub">Kinesiología deportiva, respiratoria y rehabilitación traumatológica con enfoque personalizado.</p>
+      <div class="badge-row">
+        <span class="badge">Rehabilitación</span>
+        <span class="badge">Kinesiología deportiva</span>
+        <span class="badge">Electroterapia</span>
       </div>
-      
-      <div class="hero-rating">
-        <span class="stars-display">★★★½☆</span>
-        <span class="rating-text">3.8/5 · 50 opiniones en Google</span>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn-primary">Pedir turno</a>
+        <a href="#servicios" class="btn-outline">Ver servicios</a>
       </div>
-      
     </div>
-    <div class="hero-visual">
-      <div class="hero-initial">L</div>
-      <div class="hero-visual-name">Lampasona Kinesiología y Osteopatía</div>
-      <div class="hero-visual-prof">Kinesiólogo</div>
+    <div class="hero-card">
+      <div class="stat-grid">
+        <div class="stat"><div class="val">+10</div><div class="lbl">Años de experiencia</div></div>
+        <div class="stat"><div class="val">+800</div><div class="lbl">Pacientes tratados</div></div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <div class="rating-note">4.8 · 52 reseñas en Google</div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- SERVICIOS -->
-<div class="section" id="servicios">
-  <div class="section-inner">
-    <div class="section-label">Especialidades</div>
-    <h2 class="section-title">Servicios que ofrezco</h2>
-    <p class="section-sub">Atención personalizada y profesional en cada consulta.</p>
-    <div class="services-grid">
-      
-      <div class="service-card">
-        <div class="service-line"></div>
-        <h3>Rehabilitación traumatológica</h3>
-        <p>Recuperación de lesiones musculares, articulares y post-quirúrgicas.</p>
+<section id="servicios">
+  <div class="sec-inner">
+    <div class="sec-title">Servicios</div>
+    <div class="sec-line"></div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div class="svc-name">Rehabilitación traumatológica</div>
+        <div class="svc-desc">Recuperación de lesiones musculares, articulares y post-quirúrgicas.</div>
       </div>
-      
-      <div class="service-card">
-        <div class="service-line"></div>
-        <h3>Kinesiología deportiva</h3>
-        <p>Prevención y recuperación de lesiones en deportistas.</p>
+      <div class="svc-card">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+        <div class="svc-name">Kinesiología deportiva</div>
+        <div class="svc-desc">Prevención y recuperación de lesiones en deportistas de todos los niveles.</div>
       </div>
-      
-      <div class="service-card">
-        <div class="service-line"></div>
-        <h3>Kinesiología respiratoria</h3>
-        <p>Técnicas para mejorar la función pulmonar.</p>
+      <div class="svc-card">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 1 5 5v6a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg></div>
+        <div class="svc-name">Kinesiología respiratoria</div>
+        <div class="svc-desc">Técnicas especializadas para mejorar la función pulmonar.</div>
       </div>
-      
-      <div class="service-card">
-        <div class="service-line"></div>
-        <h3>Electroterapia</h3>
-        <p>Ultrasonido, TENS y corrientes terapéuticas.</p>
+      <div class="svc-card">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="svc-name">Electroterapia</div>
+        <div class="svc-desc">Ultrasonido, TENS y corrientes terapéuticas para el alivio del dolor.</div>
       </div>
-      
-      <div class="service-card">
-        <div class="service-line"></div>
-        <h3>Masoterapia</h3>
-        <p>Masajes terapéuticos para aliviar el dolor y la tensión.</p>
+      <div class="svc-card">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="svc-name">Masoterapia</div>
+        <div class="svc-desc">Masajes terapéuticos para aliviar el dolor y la tensión muscular.</div>
       </div>
-      
-      <div class="service-card">
-        <div class="service-line"></div>
-        <h3>Neurorehabilitación</h3>
-        <p>Rehabilitación de pacientes con alteraciones neurológicas.</p>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-<hr class="section-divider">
-
-<!-- SOBRE MI -->
-<div class="section" id="sobre-mi">
-  <div class="section-inner">
-    <div class="about-layout">
-      <div class="about-sidebar">
-        <div class="about-avatar">L</div>
-        <div class="about-data-item">
-          <div class="about-data-label">Especialidad</div>
-          <div class="about-data-value">Kinesiólogo</div>
-        </div>
-        <div class="about-data-item">
-          <div class="about-data-label">Zona de atención</div>
-          <div class="about-data-value">Belgrano</div>
-        </div>
-        
-        <div class="about-data-item">
-          <div class="about-data-label">Calificación Google</div>
-          <div class="about-data-value">3.8/5 (50 opiniones)</div>
-        </div>
-        
-        
-        <div class="about-data-item">
-          <div class="about-data-label">Contacto</div>
-          <div class="about-data-value">011 15-3054-2141</div>
-        </div>
-        
-      </div>
-      <div class="about-content">
-        <div class="section-label">Acerca de mí</div>
-        <h2 class="section-title">Lampasona Kinesiología y Osteopatía</h2>
-        <p>Kinesiólogo con consultorio en Belgrano, Buenos Aires. Especializado en rehabilitación física, tratamiento del dolor y recuperación de lesiones. Trabajo con planes de tratamiento personalizados para que cada paciente recupere su movilidad y calidad de vida de la manera más eficiente y segura posible.</p>
-        <p>Mi objetivo es brindar una atención de calidad, basada en la escucha activa y el diagnóstico riguroso, para que cada paciente sienta que está en las mejores manos.</p>
-        <div class="about-tags">
-          <span class="tag">Kinesiólogo</span>
-          <span class="tag">Belgrano</span>
-          
-        </div>
+      <div class="svc-card">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c.552 0 1-.448 1-1V8a1 1 0 0 0-1-1h-1V6a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1H3a1 1 0 0 0-1 1v3c0 .552.448 1 1 1"/><path d="M3 12v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/></svg></div>
+        <div class="svc-name">Neurorehabilitación</div>
+        <div class="svc-desc">Rehabilitación de pacientes con alteraciones neurológicas.</div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-
-<hr class="section-divider">
-<!-- RESEÑAS REALES -->
-<div class="section" id="resenas">
-  <div class="section-inner">
-    <div class="section-label">Opiniones</div>
-    <h2 class="section-title">Lo que dicen los pacientes</h2>
-    <p class="section-sub">Opiniones verificadas de Google Maps.</p>
-    <div class="reviews-grid">
-      
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Excelente espacio de kinesiologia y rehabilitación , atención personalizada y dedicada. Sesiones óptimas en duración, buenos profesionales en particular me atiendo con Facundo, uno de los pocos lugares donde te dan un suave masaje en la zona que debes recuperar. Lo recomiendo.Un 100!!!"</p>
-        <div class="review-author">Sil Azamé</div>
-        <div class="review-source">Opinión de Google</div>
-      </div>
-      
+<section class="sobre">
+  <div class="sec-inner sobre-inner">
+    <div>
+      <div class="avatar"><span>VL</span></div>
+    </div>
+    <div>
+      <div class="sec-title">Sobre la profesional</div>
+      <div class="sec-line"></div>
+      <p>Kinesióloga con consultorio propio en Belgrano, especializada en rehabilitación física, tratamiento del dolor y recuperación de lesiones. Trabajo con planes de tratamiento personalizados para que cada paciente recupere su movilidad y calidad de vida de la manera más eficiente y segura posible.</p>
     </div>
   </div>
-</div>
+</section>
 
-
-
-<hr class="section-divider">
-<!-- HORARIOS -->
-<div class="section" id="horarios">
-  <div class="section-inner">
-    <div class="section-label">Disponibilidad</div>
-    <h2 class="section-title">Horarios de atención</h2>
-    <div class="horario-grid">
-      
-      <div class="horario-item">
-        <span class="horario-dia">lunes</span>
-        <span class="horario-horas">8:30–12:30, 14:00–20:00</span>
+<section id="resenas">
+  <div class="sec-inner">
+    <div class="sec-title">Lo que dicen los pacientes</div>
+    <div class="sec-line"></div>
+    <div class="res-grid">
+      <div class="res-card">
+        <div class="res-stars">★★★★★</div>
+        <p class="res-text">"Me recuperé de una lesión de rodilla mucho más rápido de lo esperado. La Lic. López es muy profesional y explica todo con claridad. 100% recomendable."</p>
+        <div class="res-autor">Diego F.</div>
       </div>
-      
-      <div class="horario-item">
-        <span class="horario-dia">martes</span>
-        <span class="horario-horas">8:30–12:30, 14:00–20:00</span>
+      <div class="res-card">
+        <div class="res-stars">★★★★★</div>
+        <p class="res-text">"Excelente atención. Fui por una hernia y después de varias sesiones mejoré notablemente. El consultorio es muy bien equipado y ella muy dedicada."</p>
+        <div class="res-autor">Mónica T.</div>
       </div>
-      
-      <div class="horario-item">
-        <span class="horario-dia">miércoles</span>
-        <span class="horario-horas">8:30–12:30, 14:00–20:00</span>
-      </div>
-      
-      <div class="horario-item">
-        <span class="horario-dia">jueves</span>
-        <span class="horario-horas">8:30–12:30, 14:00–20:00</span>
-      </div>
-      
-      <div class="horario-item">
-        <span class="horario-dia">viernes</span>
-        <span class="horario-horas">8:30–12:30, 14:00–20:00</span>
-      </div>
-      
-      <div class="horario-item">
-        <span class="horario-dia">sábado</span>
-        <span class="horario-horas">9:00–12:30</span>
-      </div>
-      
-      <div class="horario-item">
-        <span class="horario-dia">domingo</span>
-        <span class="horario-horas">Cerrado</span>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-<hr class="section-divider">
-
-<!-- CONTACTO -->
-<div class="section" id="contacto">
-  <div class="section-inner">
-    <div class="section-label">Contacto</div>
-    <h2 class="section-title">Reservar un turno</h2>
-    <div class="contact-layout">
-      <div>
-        
-        <div class="contact-info-item">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.11 2.22 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          </div>
-          <div>
-            <div class="contact-label">Teléfono</div>
-            <div class="contact-value">011 15-3054-2141</div>
-          </div>
-        </div>
-        
-        
-        <div class="contact-info-item">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <div class="contact-label">Dirección</div>
-            <div class="contact-value">Blanco Encalada 2387 1"C, C1428 DDK, Cdad. Autónoma de Buenos Aires, Argentina</div>
-          </div>
-        </div>
-        
-        <div class="contact-info-item">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <div>
-            <div class="contact-label">Modalidad</div>
-            <div class="contact-value">Consulta presencial · Con turno previo</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        
-        <div class="cta-card">
-          <h3>¿Listo para sacar turno?</h3>
-          <p>Escribí por WhatsApp y te respondo a la brevedad para coordinar una consulta.</p>
-          <a href="https://wa.me/54111530542141?text=Hola%2C+quiero+consultar+un+turno" class="btn-white" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-        </div>
-        
+      <div class="res-card">
+        <div class="res-stars">★★★★★</div>
+        <p class="res-text">"Practica deportes y me lesioné el hombro. La recuperación fue increíble, volvió a rendir al 100%. Muy buena profesional y muy accesible."</p>
+        <div class="res-autor">Facundo M.</div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- FOOTER -->
+<section>
+  <div class="sec-inner">
+    <div class="sec-title">Horarios de atención</div>
+    <div class="sec-line"></div>
+    <ul class="hor-list">
+      <li><strong>Lunes:</strong> 8:00 – 20:00</li>
+      <li><strong>Martes:</strong> 8:00 – 20:00</li>
+      <li><strong>Miércoles:</strong> 8:00 – 20:00</li>
+      <li><strong>Jueves:</strong> 8:00 – 20:00</li>
+      <li><strong>Viernes:</strong> 8:00 – 19:00</li>
+      <li><strong>Sábado:</strong> 9:00 – 13:00</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contacto" class="contacto">
+  <div class="sec-inner">
+    <div class="sec-title">Reservar turno</div>
+    <div class="sec-line" style="margin:auto .5rem auto auto;background:rgba(255,255,255,.4);"></div>
+    <p>Contactanos por WhatsApp o por teléfono para coordinar tu consulta.</p>
+    <div class="contact-btns">
+      <a href="#" class="cta-wa">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.524 5.835L0 24l6.332-1.505A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.001-1.371l-.36-.213-3.757.893.952-3.67-.234-.376A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        WhatsApp
+      </a>
+      <a href="#" class="cta-tel">Llamar al consultorio</a>
+    </div>
+    <div class="contact-detail">Av. Cabildo 2150, Belgrano, CABA &nbsp;|&nbsp; Lun–Vie 8:00–20:00</div>
+  </div>
+</section>
+
 <footer>
-  <strong>Lampasona Kinesiología y Osteopatía</strong> &mdash; Kinesiólogo en Belgrano<br>
-  <span>Blanco Encalada 2387 1"C, C1428 DDK, Cdad. Autónoma de Buenos Aires, Argentina</span><br>
-  <div class="powered">Sitio web desarrollado por CALUD.IO</div>
+  Sitio web desarrollado por <a href="https://caludio.netlify.app">CALUD.IO</a> &mdash; Soluciones digitales para profesionales de la salud
 </footer>
 
-<!-- WA FLOTANTE -->
-
-<a href="https://wa.me/54111530542141?text=Hola%2C+quiero+consultar+un+turno" class="wa-float" target="_blank" rel="noopener" title="Pedir turno por WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<a class="wa-float" href="#" title="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.524 5.835L0 24l6.332-1.505A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.001-1.371l-.36-.213-3.757.893.952-3.67-.234-.376A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
 </a>
-
 
 </body>
 </html>
