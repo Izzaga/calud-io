@@ -424,12 +424,12 @@
     .cal-day.past    { color: var(--border); pointer-events: none; }
     .cal-day.weekend { color: var(--muted); pointer-events: none; opacity: .5; }
     .cal-day.available {
-      background: rgba(44,166,164,.15); color: var(--accent);
+      background: var(--cal-bg, rgba(44,166,164,.15)); color: var(--cal-p, #2CA6A4);
       cursor: pointer; font-weight: 600;
     }
-    .cal-day.available:hover { background: rgba(44,166,164,.3); }
+    .cal-day.available:hover { background: var(--cal-bg-h, rgba(44,166,164,.3)); }
     .cal-day.selected {
-      background: var(--accent) !important; color: #fff !important;
+      background: var(--cal-p, #2CA6A4) !important; color: #fff !important;
     }
     .demo-panel {
       padding: 1.5rem;
@@ -1146,13 +1146,32 @@ async function handleSubmit(e) {
     }
   }
 
+  const CAL_COLORS = {
+    'Odontología': { p: '#1a56a0', bg: 'rgba(26,86,160,.13)',  bgh: 'rgba(26,86,160,.25)'  },
+    'Kinesiología': { p: '#0d7a5f', bg: 'rgba(13,122,95,.13)', bgh: 'rgba(13,122,95,.25)'  },
+    'Nutrición':    { p: '#b45309', bg: 'rgba(180,83,9,.13)',  bgh: 'rgba(180,83,9,.25)'   },
+    'Psicología':   { p: '#5b21b6', bg: 'rgba(91,33,182,.13)', bgh: 'rgba(91,33,182,.25)'  },
+  };
+
+  function applyCalendarColor() {
+    const esp = document.getElementById('demo-especialidad').value;
+    const c   = CAL_COLORS[esp] || { p: '#2CA6A4', bg: 'rgba(44,166,164,.15)', bgh: 'rgba(44,166,164,.3)' };
+    const cal = document.querySelector('.demo-calendar');
+    cal.style.setProperty('--cal-p',   c.p);
+    cal.style.setProperty('--cal-bg',  c.bg);
+    cal.style.setProperty('--cal-bg-h', c.bgh);
+  }
+
   document.getElementById('demo-especialidad')
     .addEventListener('change', () => {
       selectedDay  = null;
       selectedSlot = null;
       document.querySelectorAll('.cal-day.selected').forEach(e => e.classList.remove('selected'));
+      applyCalendarColor();
       renderPanel();
     });
+
+  applyCalendarColor();
 
   renderCalendar();
   renderPanel();
