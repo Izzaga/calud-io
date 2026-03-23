@@ -662,6 +662,7 @@
     <div class="prof-pill prof-preview" data-preview="landing/preview-clinico.html" title="Ver demo">🩺 Clínicos</div>
     <div class="prof-pill prof-preview" data-preview="landing/preview-pediatra.html" title="Ver demo">👶 Pediatras</div>
     <div class="prof-pill prof-preview" data-preview="landing/preview-traumatologo.html" title="Ver demo">🦴 Traumatólogos</div>
+    <div class="prof-pill prof-preview" data-preview="landing/preview-personal-trainer.html" title="Ver demo">🏋️ Personal Trainers</div>
   </div>
 </section>
 
@@ -834,6 +835,12 @@
         <option value="Kinesiología">💪 Kinesiología</option>
         <option value="Nutrición">🥗 Nutrición</option>
         <option value="Psicología">🧠 Psicología</option>
+        <option value="Oftalmología">👁️ Oftalmología</option>
+        <option value="Cardiología">🫀 Cardiología</option>
+        <option value="Medicina Clínica">🩺 Medicina Clínica</option>
+        <option value="Pediatría">👶 Pediatría</option>
+        <option value="Traumatología">🦴 Traumatología</option>
+        <option value="Personal Trainer">🏋️ Personal Trainer</option>
       </select>
     </div>
     <div class="demo-body">
@@ -1147,10 +1154,16 @@ async function handleSubmit(e) {
   }
 
   const CAL_COLORS = {
-    'Odontología': { p: '#1a56a0', bg: 'rgba(26,86,160,.13)',  bgh: 'rgba(26,86,160,.25)',  hbg: 'rgba(26,86,160,.08)'  },
-    'Kinesiología': { p: '#0d7a5f', bg: 'rgba(13,122,95,.13)', bgh: 'rgba(13,122,95,.25)',  hbg: 'rgba(13,122,95,.07)'  },
-    'Nutrición':    { p: '#b45309', bg: 'rgba(180,83,9,.13)',  bgh: 'rgba(180,83,9,.25)',   hbg: 'rgba(180,83,9,.07)'   },
-    'Psicología':   { p: '#5b21b6', bg: 'rgba(91,33,182,.13)', bgh: 'rgba(91,33,182,.25)',  hbg: 'rgba(91,33,182,.07)'  },
+    'Odontología':     { p: '#1a56a0', bg: 'rgba(26,86,160,.13)',   bgh: 'rgba(26,86,160,.25)',   hbg: 'rgba(26,86,160,.08)'   },
+    'Kinesiología':    { p: '#0d7a5f', bg: 'rgba(13,122,95,.13)',   bgh: 'rgba(13,122,95,.25)',   hbg: 'rgba(13,122,95,.07)'   },
+    'Nutrición':       { p: '#b45309', bg: 'rgba(180,83,9,.13)',    bgh: 'rgba(180,83,9,.25)',    hbg: 'rgba(180,83,9,.07)'    },
+    'Psicología':      { p: '#5b21b6', bg: 'rgba(91,33,182,.13)',   bgh: 'rgba(91,33,182,.25)',   hbg: 'rgba(91,33,182,.07)'   },
+    'Oftalmología':    { p: '#0891b2', bg: 'rgba(8,145,178,.13)',   bgh: 'rgba(8,145,178,.25)',   hbg: 'rgba(8,145,178,.07)'   },
+    'Cardiología':     { p: '#e11d48', bg: 'rgba(225,29,72,.13)',   bgh: 'rgba(225,29,72,.25)',   hbg: 'rgba(225,29,72,.07)'   },
+    'Medicina Clínica':{ p: '#1e5f74', bg: 'rgba(30,95,116,.13)',   bgh: 'rgba(30,95,116,.25)',   hbg: 'rgba(30,95,116,.07)'   },
+    'Pediatría':       { p: '#ea580c', bg: 'rgba(234,88,12,.13)',   bgh: 'rgba(234,88,12,.25)',   hbg: 'rgba(234,88,12,.07)'   },
+    'Traumatología':   { p: '#4338ca', bg: 'rgba(67,56,202,.13)',   bgh: 'rgba(67,56,202,.25)',   hbg: 'rgba(67,56,202,.07)'   },
+    'Personal Trainer':{ p: '#16a34a', bg: 'rgba(22,163,74,.13)',   bgh: 'rgba(22,163,74,.25)',   hbg: 'rgba(22,163,74,.07)'   },
   };
 
   function applyCalendarColor() {
