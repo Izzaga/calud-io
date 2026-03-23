@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ nombre }} — {{ profesion }} en {{ zona.split(',')[0] }}</title>
+  <meta name="description" content="{{ profesion }} en {{ zona.split(',')[0] }}. {{ sobre_mi[:140] }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary:      {{ primary }};
+      --primary-dark: {{ primary_dark }};
+      --primary-light:{{ primary_light }};
+      --text:    #1a1a2e;
+      --muted:   #5a6474;
+      --border:  #e8ecf0;
+      --bg:      #f7f9fc;
+      --surface: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; font-size: 16px; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--primary); color: #fff; text-align: center;
+      font-size: .8rem; padding: .45rem 1rem; letter-spacing: .02em;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 1.1rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 6px rgba(0,0,0,.05);
+    }
+    .nav-brand { display: flex; flex-direction: column; }
+    .nav-name { font-family: 'Lora', serif; font-weight: 600; font-size: 1.15rem; color: var(--primary); line-height: 1.2; }
+    .nav-prof { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .nav-cta {
+      background: var(--primary); color: #fff; padding: .6rem 1.4rem;
+      border-radius: 6px; text-decoration: none; font-weight: 500; font-size: .88rem;
+      transition: background .2s; white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--primary-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; align-items: center;
+      max-width: 1100px; margin: 0 auto; padding: 4rem 2rem;
+      gap: 4rem;
+    }
+    @media (max-width: 768px) { .hero { grid-template-columns: 1fr; min-height: auto; padding: 3rem 1.5rem; } }
+    .hero-text {}
+    .hero-eyebrow {
+      display: inline-block; color: var(--primary); font-size: .78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem;
+      padding-bottom: .4rem; border-bottom: 2px solid var(--primary);
+    }
+    .hero h1 {
+      font-family: 'Lora', serif; font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 600; line-height: 1.2; margin-bottom: 1.2rem; color: var(--text);
+    }
+    .hero-subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 440px; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--primary); color: #fff; padding: .8rem 1.8rem;
+      border-radius: 6px; text-decoration: none; font-weight: 500; font-size: .95rem;
+      transition: background .2s, transform .15s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      border: 1.5px solid var(--border); color: var(--text); padding: .78rem 1.6rem;
+      border-radius: 6px; text-decoration: none; font-size: .95rem;
+      transition: border-color .2s; display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+    .hero-rating { display: flex; align-items: center; gap: .6rem; margin-top: 1.8rem; }
+    .stars-display { color: var(--primary); font-size: 1rem; letter-spacing: 1px; }
+    .rating-text { font-size: .85rem; color: var(--muted); }
+
+    /* Hero visual */
+    .hero-visual {
+      background: linear-gradient(145deg, var(--primary-light) 0%, var(--primary) 100%);
+      border-radius: 24px; aspect-ratio: 4/5; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 2.5rem; color: #fff; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-visual::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: rgba(255,255,255,.1);
+    }
+    .hero-visual::after {
+      content: ''; position: absolute; bottom: -40px; left: -40px;
+      width: 150px; height: 150px; border-radius: 50%;
+      background: rgba(255,255,255,.07);
+    }
+    .hero-initial {
+      font-family: 'Lora', serif; font-size: 5rem; font-weight: 600;
+      color: rgba(255,255,255,.9); line-height: 1; margin-bottom: 1rem; position: relative; z-index: 1;
+    }
+    .hero-visual-name { font-size: 1.1rem; font-weight: 500; position: relative; z-index: 1; }
+    .hero-visual-prof { font-size: .82rem; opacity: .8; margin-top: .3rem; position: relative; z-index: 1; text-transform: uppercase; letter-spacing: .06em; }
+    @media (max-width: 768px) { .hero-visual { display: none; } }
+
+    /* ── SECCIONES ── */
+    .section { padding: 5rem 0; }
+    .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .section-divider { border: none; border-top: 1px solid var(--border); }
+    .section-label { color: var(--primary); font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .8rem; }
+    .section-title { font-family: 'Lora', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600; margin-bottom: .75rem; line-height: 1.3; }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 520px; margin-bottom: 2.5rem; }
+
+    /* ── SERVICIOS ── */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+    .service-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem;
+      transition: box-shadow .25s, border-color .25s;
+    }
+    .service-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.07); border-color: var(--primary); }
+    .service-line { width: 32px; height: 3px; background: var(--primary); border-radius: 2px; margin-bottom: 1rem; }
+    .service-card h3 { font-size: .95rem; font-weight: 600; margin-bottom: .4rem; color: var(--text); }
+    .service-card p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── SOBRE MI ── */
+    .about-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+    @media (max-width: 768px) { .about-layout { grid-template-columns: 1fr; gap: 2rem; } }
+    .about-sidebar {}
+    .about-avatar {
+      width: 100%; aspect-ratio: 1; border-radius: 16px;
+      background: linear-gradient(145deg, var(--primary-light), var(--primary));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Lora', serif; font-size: 4rem; font-weight: 600; color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .about-data-item { margin-bottom: .75rem; }
+    .about-data-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .15rem; }
+    .about-data-value { font-size: .9rem; font-weight: 500; color: var(--text); }
+    .about-content .section-title { margin-bottom: 1rem; }
+    .about-content p { color: var(--muted); margin-bottom: 1rem; line-height: 1.8; }
+    .about-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+    .tag {
+      background: var(--primary-light); color: var(--primary-dark);
+      padding: .3rem .85rem; border-radius: 99px; font-size: .78rem; font-weight: 500;
+    }
+
+    /* ── RESEÑAS ── */
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.25rem; }
+    .review-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
+    }
+    .review-stars { color: var(--primary); font-size: .9rem; margin-bottom: .75rem; }
+    .review-text { font-size: .88rem; color: var(--muted); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+    .review-author { font-size: .82rem; font-weight: 600; color: var(--text); }
+    .review-source { font-size: .75rem; color: var(--muted); }
+
+    /* ── HORARIOS ── */
+    .horario-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .5rem; }
+    .horario-item { display: flex; justify-content: space-between; padding: .6rem 1rem; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); font-size: .88rem; }
+    .horario-dia { font-weight: 500; text-transform: capitalize; }
+    .horario-horas { color: var(--muted); }
+
+    /* ── CONTACTO ── */
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    @media (max-width: 768px) { .contact-layout { grid-template-columns: 1fr; } }
+    .contact-info-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
+    .contact-icon {
+      width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+      background: var(--primary-light); display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon svg { width: 18px; height: 18px; stroke: var(--primary); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: .2rem; }
+    .contact-value { font-size: .92rem; font-weight: 500; }
+    .cta-card {
+      background: var(--primary); color: #fff; border-radius: 16px; padding: 2.5rem;
+      text-align: center;
+    }
+    .cta-card h3 { font-family: 'Lora', serif; font-size: 1.4rem; margin-bottom: .75rem; }
+    .cta-card p { opacity: .85; font-size: .92rem; margin-bottom: 1.8rem; line-height: 1.6; }
+    .btn-white {
+      background: #fff; color: var(--primary); font-weight: 600; padding: .85rem 2rem;
+      border-radius: 8px; text-decoration: none; display: inline-block; font-size: .95rem;
+      transition: transform .15s;
+    }
+    .btn-white:hover { transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text); color: #8892a4; padding: 2.5rem; text-align: center; font-size: .82rem;
+    }
+    footer strong { color: #fff; }
+    footer .powered { margin-top: .4rem; opacity: .5; font-size: .72rem; }
+
+    /* ── WA FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+      width: 54px; height: 54px; border-radius: 50%; background: #25D366;
+      display: flex; align-items: center; justify-content: center; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(37,211,102,.35); transition: transform .2s;
+    }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float svg { width: 26px; height: 26px; fill: #fff; }
+  </style>
+  {% block extra_styles %}{% endblock %}
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">Atención en {{ zona.split(',')[0] }} · Turnos con previo aviso</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-name">{{ nombre }}</div>
+    <div class="nav-prof">{{ profesion }}</div>
+  </div>
+  {% if wa_link %}
+  <a href="{{ wa_link }}" class="nav-cta" target="_blank" rel="noopener">Solicitar turno</a>
+  {% endif %}
+</nav>
+
+<!-- HERO -->
+<div style="background: var(--surface); border-bottom: 1px solid var(--border);">
+  <div class="hero">
+    <div class="hero-text">
+      <span class="hero-eyebrow">{{ profesion }} · {{ zona.split(',')[0] }}</span>
+      <h1>{{ nombre }}</h1>
+      <p class="hero-subtitle">{{ sobre_mi[:180] }}</p>
+      <div class="hero-actions">
+        {% if wa_link %}
+        <a href="{{ wa_link }}" class="btn-primary" target="_blank" rel="noopener">Solicitar turno</a>
+        {% endif %}
+        <a href="#servicios" class="btn-secondary">Ver servicios</a>
+      </div>
+      {% if rating %}
+      <div class="hero-rating">
+        <span class="stars-display">{{ rating_stars }}</span>
+        <span class="rating-text">{{ rating }}/5 · {{ total_resenas }} opiniones en Google</span>
+      </div>
+      {% endif %}
+    </div>
+    <div class="hero-visual">
+      <div class="hero-initial">{{ nombre[0] }}</div>
+      <div class="hero-visual-name">{{ nombre }}</div>
+      <div class="hero-visual-prof">{{ profesion }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<div class="section" id="servicios">
+  <div class="section-inner">
+    <div class="section-label">Especialidades</div>
+    <h2 class="section-title">Servicios que ofrezco</h2>
+    <p class="section-sub">Atención personalizada y profesional en cada consulta.</p>
+    <div class="services-grid">
+      {% for icon, titulo, desc in servicios %}
+      <div class="service-card">
+        <div class="service-line"></div>
+        <h3>{{ titulo }}</h3>
+        <p>{{ desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- SOBRE MI -->
+<div class="section" id="sobre-mi">
+  <div class="section-inner">
+    <div class="about-layout">
+      <div class="about-sidebar">
+        <div class="about-avatar">{{ nombre[0] }}</div>
+        <div class="about-data-item">
+          <div class="about-data-label">Especialidad</div>
+          <div class="about-data-value">{{ profesion.title() }}</div>
+        </div>
+        <div class="about-data-item">
+          <div class="about-data-label">Zona de atención</div>
+          <div class="about-data-value">{{ zona.split(',')[0] }}</div>
+        </div>
+        {% if rating %}
+        <div class="about-data-item">
+          <div class="about-data-label">Calificación Google</div>
+          <div class="about-data-value">{{ rating }}/5 ({{ total_resenas }} opiniones)</div>
+        </div>
+        {% endif %}
+        {% if telefono %}
+        <div class="about-data-item">
+          <div class="about-data-label">Contacto</div>
+          <div class="about-data-value">{{ telefono }}</div>
+        </div>
+        {% endif %}
+      </div>
+      <div class="about-content">
+        <div class="section-label">Acerca de mí</div>
+        <h2 class="section-title">{{ nombre }}</h2>
+        <p>{{ sobre_mi }}</p>
+        <p>Mi objetivo es brindar una atención de calidad, basada en la escucha activa y el diagnóstico riguroso, para que cada paciente sienta que está en las mejores manos.</p>
+        <div class="about-tags">
+          <span class="tag">{{ profesion.title() }}</span>
+          <span class="tag">{{ zona.split(',')[0] }}</span>
+          {% block extra_tags %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if resenas %}
+<hr class="section-divider">
+<!-- RESEÑAS REALES -->
+<div class="section" id="resenas">
+  <div class="section-inner">
+    <div class="section-label">Opiniones</div>
+    <h2 class="section-title">Lo que dicen los pacientes</h2>
+    <p class="section-sub">Opiniones verificadas de Google Maps.</p>
+    <div class="reviews-grid">
+      {% for r in resenas %}
+      <div class="review-card">
+        <div class="review-stars">{{ '★' * r.rating }}{{ '☆' * (5 - r.rating) }}</div>
+        <p class="review-text">"{{ r.texto }}"</p>
+        <div class="review-author">{{ r.autor }}</div>
+        <div class="review-source">Opinión de Google</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if horarios_lista %}
+<hr class="section-divider">
+<!-- HORARIOS -->
+<div class="section" id="horarios">
+  <div class="section-inner">
+    <div class="section-label">Disponibilidad</div>
+    <h2 class="section-title">Horarios de atención</h2>
+    <div class="horario-grid">
+      {% for h in horarios_lista %}
+      <div class="horario-item">
+        <span class="horario-dia">{{ h.split(':')[0] }}</span>
+        <span class="horario-horas">{{ h.split(':', 1)[1].strip() if ':' in h else h }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<hr class="section-divider">
+
+<!-- CONTACTO -->
+<div class="section" id="contacto">
+  <div class="section-inner">
+    <div class="section-label">Contacto</div>
+    <h2 class="section-title">Reservar un turno</h2>
+    <div class="contact-layout">
+      <div>
+        {% if telefono %}
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.11 2.22 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Teléfono</div>
+            <div class="contact-value">{{ telefono }}</div>
+          </div>
+        </div>
+        {% endif %}
+        {% if direccion %}
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Dirección</div>
+            <div class="contact-value">{{ direccion }}</div>
+          </div>
+        </div>
+        {% endif %}
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Modalidad</div>
+            <div class="contact-value">Consulta presencial · Con turno previo</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        {% if wa_link %}
+        <div class="cta-card">
+          <h3>¿Listo para sacar turno?</h3>
+          <p>Escribí por WhatsApp y te respondo a la brevedad para coordinar una consulta.</p>
+          <a href="{{ wa_link }}" class="btn-white" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+        {% else %}
+        <div class="cta-card">
+          <h3>Consultá disponibilidad</h3>
+          <p>Comunicate para coordinar una consulta en {{ zona.split(',')[0] }}.</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>{{ nombre }}</strong> &mdash; {{ profesion.title() }} en {{ zona.split(',')[0] }}<br>
+  {% if direccion %}<span>{{ direccion }}</span><br>{% endif %}
+  <div class="powered">Sitio web desarrollado por CALUD.IO</div>
+</footer>
+
+<!-- WA FLOTANTE -->
+{% if wa_link %}
+<a href="{{ wa_link }}" class="wa-float" target="_blank" rel="noopener" title="Pedir turno por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+{% endif %}
+
+</body>
+</html>

@@ -13,12 +13,27 @@
     .card-title { color: #94a3b8 !important; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
     .metric { font-size: 2.2rem; font-weight: 700; }
     .table { --bs-table-bg: #1e293b; --bs-table-border-color: #334155; --bs-table-color: #e2e8f0; --bs-table-hover-bg: #263348; }
-    .table td, .table th { color: #e2e8f0 !important; border-color: #334155 !important; }
-    .table thead th { background: #0f172a; color: #94a3b8 !important; }
+    .table td, .table th { color: #e2e8f0 !important; border-color: #334155 !important; vertical-align: middle; }
+    .table thead th { background: #0f172a; color: #94a3b8 !important; font-size: .75rem; text-transform: uppercase; }
     a, a:visited { color: #38bdf8 !important; }
     .section-title { color: #38bdf8 !important; font-size: 1rem; font-weight: 600; border-bottom: 1px solid #334155; padding-bottom: .4rem; margin-bottom: 1rem; }
     .badge { color: #fff !important; }
     small { color: #94a3b8 !important; }
+    select, input { background: #1e293b !important; border-color: #334155 !important; color: #e2e8f0 !important; }
+    select option { background: #1e293b; }
+    .btn-sm { font-size: .75rem; padding: .2rem .55rem; }
+    .btn-contactado { background: #16a34a; border-color: #16a34a; color: #fff !important; }
+    .btn-contactado:hover { background: #15803d; }
+    .btn-desmarcar { background: #374151; border-color: #4b5563; color: #e2e8f0 !important; }
+    .btn-ver-sitio { background: #0284c7; border-color: #0284c7; color: #fff !important; }
+    .btn-ver-sitio:hover { background: #0369a1; }
+    .fila-contactado td { opacity: .45; }
+    .badge-caliente { background: #ef4444; }
+    .badge-tibio    { background: #f59e0b; }
+    .badge-frio     { background: #3b82f6; }
+    #loading { display:none; color:#94a3b8; font-size:.85rem; padding:.5rem 0; }
+    .filtros-bar { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
+    .count-badge { background: #334155; color: #94a3b8 !important; font-size: .75rem; padding: .2rem .6rem; border-radius: 99px; }
   </style>
 </head>
 <body>
@@ -27,45 +42,60 @@
   <!-- Header -->
   <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
     <div>
-      <h1 class="fw-bold mb-0" style="color:#38bdf8;">CALUD.IO</h1>
-      <small class="text-muted">Último scrape: {{ ultima_fecha or '—' }}</small>
+      <h1 class="fw-bold mb-0" style="color:#38bdf8 !important;">CALUD.IO</h1>
+      <small>Último scrape: {{ ultima_fecha or '—' }}</small>
     </div>
-    <button class="btn btn-sm btn-outline-info" onclick="location.reload()">Actualizar</button>
+    <div class="d-flex gap-2 flex-wrap">
+      <button class="btn btn-sm btn-outline-secondary" onclick="exportarCSV()">Exportar CSV</button>
+      <button class="btn btn-sm btn-outline-info" onclick="location.reload()">Actualizar</button>
+    </div>
   </div>
 
   <!-- KPIs -->
   <div class="row g-3 mb-4">
-    <div class="col-6 col-md-3">
+    <div class="col-6 col-md-2">
       <div class="card p-3 text-center">
-        <div class="card-title">Total prospectos</div>
+        <div class="card-title">Total</div>
         <div class="metric text-white">{{ total }}</div>
       </div>
     </div>
-    <div class="col-6 col-md-3">
+    <div class="col-6 col-md-2">
       <div class="card p-3 text-center">
         <div class="card-title">Calientes</div>
-        <div class="metric" style="color:#ef4444;">
+        <div class="metric" style="color:#ef4444 !important;">
           {% for t in por_temp %}{% if t.temperatura == 'CALIENTE' %}{{ t.n }}{% endif %}{% endfor %}
         </div>
       </div>
     </div>
-    <div class="col-6 col-md-3">
+    <div class="col-6 col-md-2">
       <div class="card p-3 text-center">
         <div class="card-title">Tibios</div>
-        <div class="metric" style="color:#f59e0b;">
+        <div class="metric" style="color:#f59e0b !important;">
           {% for t in por_temp %}{% if t.temperatura == 'TIBIO' %}{{ t.n }}{% endif %}{% endfor %}
         </div>
       </div>
     </div>
-    <div class="col-6 col-md-3">
+    <div class="col-6 col-md-2">
       <div class="card p-3 text-center">
-        <div class="card-title">Sin web propia</div>
-        <div class="metric" style="color:#a78bfa;">{{ sin_web }}</div>
+        <div class="card-title">Sin web</div>
+        <div class="metric" style="color:#a78bfa !important;">{{ sin_web }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-2">
+      <div class="card p-3 text-center">
+        <div class="card-title">Contactados</div>
+        <div class="metric" style="color:#34d399 !important;">{{ contactados }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-2">
+      <div class="card p-3 text-center">
+        <div class="card-title">Tecnologías</div>
+        <div class="metric" style="color:#38bdf8 !important;">{{ por_tec|length }}</div>
       </div>
     </div>
   </div>
 
-  <!-- Charts row -->
+  <!-- Gráficos -->
   <div class="row g-3 mb-4">
     <div class="col-md-4">
       <div class="card p-3">
@@ -88,15 +118,14 @@
   </div>
 
   {% if por_tec %}
-  <!-- Tecnologías -->
   <div class="card p-3 mb-4">
     <div class="section-title">Tecnología web detectada</div>
     <div class="row">
       {% for t in por_tec %}
       <div class="col-6 col-md-3 mb-2">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between align-items-center">
           <span>{{ t.web_tecnologia or '—' }}</span>
-          <span class="badge bg-secondary">{{ t.n }}</span>
+          <span class="count-badge">{{ t.n }}</span>
         </div>
       </div>
       {% endfor %}
@@ -104,71 +133,70 @@
   </div>
   {% endif %}
 
-  <!-- Calientes table -->
-  <div class="card p-3 mb-4">
-    <div class="section-title">Prospectos CALIENTES (top 100)</div>
-    <div class="table-responsive">
-      <table class="table table-dark table-sm table-hover mb-0">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Profesión</th>
-            <th>Zona</th>
-            <th>Teléfono</th>
-            <th>Reseñas</th>
-            <th>Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for p in calientes %}
-          <tr>
-            <td>{{ p.nombre }}</td>
-            <td><small>{{ p.profesion }}</small></td>
-            <td><small>{{ p.zona }}</small></td>
-            <td>{{ p.telefono or '—' }}</td>
-            <td>{{ p.total_resenas }}</td>
-            <td>{{ p.rating or '—' }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+  <!-- Tabla de prospectos -->
+  <div class="card p-3">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+      <div class="section-title mb-0">Prospectos <span id="conteo" class="count-badge ms-2"></span></div>
+      <div id="loading">Cargando...</div>
     </div>
-  </div>
 
-  <!-- Tibios table -->
-  <div class="card p-3 mb-4">
-    <div class="section-title">Prospectos TIBIOS (top 100)</div>
+    <!-- Filtros -->
+    <div class="filtros-bar">
+      <div class="row g-2">
+        <div class="col-6 col-md-3">
+          <select id="f-temp" class="form-select form-select-sm" onchange="cargarTabla()">
+            <option value="">Temperatura: todas</option>
+            {% for t in temperaturas %}
+            <option value="{{ t }}">{{ t }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-6 col-md-3">
+          <select id="f-prof" class="form-select form-select-sm" onchange="cargarTabla()">
+            <option value="">Profesión: todas</option>
+            {% for p in profesiones %}
+            <option value="{{ p }}">{{ p|title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-6 col-md-3">
+          <select id="f-zona" class="form-select form-select-sm" onchange="cargarTabla()">
+            <option value="">Zona: todas</option>
+            {% for z in zonas %}
+            <option value="{{ z }}">{{ z }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-6 col-md-3">
+          <select id="f-estado" class="form-select form-select-sm" onchange="cargarTabla()">
+            <option value="">Estado: todos</option>
+            <option value="nuevo">Nuevo</option>
+            <option value="contactado">Contactado</option>
+            <option value="sitio_generado">Sitio generado</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla -->
     <div class="table-responsive">
-      <table class="table table-dark table-sm table-hover mb-0">
+      <table class="table table-sm table-hover mb-0">
         <thead>
           <tr>
             <th>Nombre</th>
             <th>Profesión</th>
             <th>Zona</th>
             <th>Teléfono</th>
-            <th>Web actual</th>
+            <th>Web</th>
             <th>Tecnología</th>
+            <th>Score</th>
             <th>Reseñas</th>
+            <th>Temp.</th>
+            <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          {% for p in tibios %}
-          <tr>
-            <td>{{ p.nombre }}</td>
-            <td><small>{{ p.profesion }}</small></td>
-            <td><small>{{ p.zona }}</small></td>
-            <td>{{ p.telefono or '—' }}</td>
-            <td>
-              {% if p.web_actual %}
-                <a href="{{ p.web_actual }}" target="_blank" rel="noopener">
-                  <small>{{ p.web_actual[:40] }}{% if p.web_actual|length > 40 %}…{% endif %}</small>
-                </a>
-              {% else %}—{% endif %}
-            </td>
-            <td><small>{{ p.web_tecnologia or '—' }}</small></td>
-            <td>{{ p.total_resenas }}</td>
-          </tr>
-          {% endfor %}
+        <tbody id="tabla-body">
+          <tr><td colspan="10" class="text-center py-4" style="color:#94a3b8 !important;">Cargando...</td></tr>
         </tbody>
       </table>
     </div>
@@ -198,16 +226,116 @@ makeChart('chartTemp',
   {{ por_temp | map(attribute='n') | list | tojson }},
   ['#ef4444','#f59e0b','#3b82f6']
 );
-
 makeChart('chartProf',
   {{ por_prof | map(attribute='profesion') | list | tojson }},
   {{ por_prof | map(attribute='n') | list | tojson }}
 );
-
 makeChart('chartZona',
   {{ por_zona | map(attribute='zona') | list | tojson }},
   {{ por_zona | map(attribute='n') | list | tojson }}
 );
+
+// ── Tabla dinámica ──────────────────────────────────────
+
+function badgeTemp(t) {
+  const cls = t === 'CALIENTE' ? 'badge-caliente' : t === 'TIBIO' ? 'badge-tibio' : 'badge-frio';
+  return `<span class="badge ${cls}">${t}</span>`;
+}
+
+function scoreBar(score) {
+  if (score == null) return '—';
+  const color = score >= 60 ? '#ef4444' : score >= 35 ? '#f59e0b' : '#34d399';
+  return `<span style="color:${color} !important;">${score}</span>`;
+}
+
+function accionesHTML(p) {
+  let btns = '';
+  if (p.estado_prospecto === 'contactado') {
+    btns += `<button class="btn btn-sm btn-desmarcar me-1" onclick="desmarcar('${p.place_id}', this)">Desmarcar</button>`;
+  } else {
+    btns += `<button class="btn btn-sm btn-contactado me-1" onclick="marcar('${p.place_id}', this)">Contactado</button>`;
+  }
+  if (p.sitio_generado) {
+    btns += `<a href="/sitio/${p.place_id}" target="_blank" class="btn btn-sm btn-ver-sitio">Ver sitio</a>`;
+  }
+  return btns;
+}
+
+function filaHTML(p) {
+  const webHTML = p.web_actual
+    ? `<a href="${p.web_actual}" target="_blank" rel="noopener" title="${p.web_actual}">
+        ${p.web_actual.replace(/^https?:\/\//, '').slice(0, 28)}${p.web_actual.length > 35 ? '…' : ''}
+       </a>`
+    : '<span style="color:#4b5563 !important;">—</span>';
+  const clsFila = p.estado_prospecto === 'contactado' ? 'fila-contactado' : '';
+  return `
+    <tr class="${clsFila}" id="fila-${p.place_id}">
+      <td><strong>${p.nombre}</strong></td>
+      <td><small>${p.profesion || '—'}</small></td>
+      <td><small>${(p.zona || '').split(',')[0]}</small></td>
+      <td>${p.telefono || '—'}</td>
+      <td style="max-width:160px;">${webHTML}</td>
+      <td><small>${p.web_tecnologia || '—'}</small></td>
+      <td>${scoreBar(p.web_score)}</td>
+      <td>${p.total_resenas || 0}</td>
+      <td>${badgeTemp(p.temperatura)}</td>
+      <td style="white-space:nowrap;">${accionesHTML(p)}</td>
+    </tr>`;
+}
+
+async function cargarTabla() {
+  const temp   = document.getElementById('f-temp').value;
+  const prof   = document.getElementById('f-prof').value;
+  const zona   = document.getElementById('f-zona').value;
+  const estado = document.getElementById('f-estado').value;
+
+  document.getElementById('loading').style.display = 'inline';
+
+  const params = new URLSearchParams({temperatura: temp, profesion: prof, zona, estado, limit: 300});
+  const res  = await fetch(`/api/prospectos?${params}`);
+  const data = await res.json();
+
+  document.getElementById('conteo').textContent = data.length;
+  document.getElementById('tabla-body').innerHTML = data.length
+    ? data.map(filaHTML).join('')
+    : '<tr><td colspan="10" class="text-center py-4" style="color:#94a3b8 !important;">Sin resultados</td></tr>';
+
+  document.getElementById('loading').style.display = 'none';
+}
+
+async function marcar(placeId, btn) {
+  await fetch(`/api/marcar-contactado/${placeId}`, { method: 'POST' });
+  const fila = document.getElementById(`fila-${placeId}`);
+  fila.classList.add('fila-contactado');
+  btn.outerHTML = `<button class="btn btn-sm btn-desmarcar me-1" onclick="desmarcar('${placeId}', this)">Desmarcar</button>`;
+  // actualizar KPI contactados
+  const kpi = document.querySelector('.metric[style*="34d399"]');
+  if (kpi) kpi.textContent = parseInt(kpi.textContent) + 1;
+}
+
+async function desmarcar(placeId, btn) {
+  await fetch(`/api/desmarcar-contactado/${placeId}`, { method: 'POST' });
+  const fila = document.getElementById(`fila-${placeId}`);
+  fila.classList.remove('fila-contactado');
+  btn.outerHTML = `<button class="btn btn-sm btn-contactado me-1" onclick="marcar('${placeId}', this)">Contactado</button>`;
+  const kpi = document.querySelector('.metric[style*="34d399"]');
+  if (kpi) kpi.textContent = Math.max(0, parseInt(kpi.textContent) - 1);
+}
+
+function exportarCSV() {
+  const temp   = document.getElementById('f-temp').value;
+  const prof   = document.getElementById('f-prof').value;
+  const zona   = document.getElementById('f-zona').value;
+  const estado = document.getElementById('f-estado').value;
+  const params = new URLSearchParams({temperatura: temp, profesion: prof, zona, estado});
+  window.location.href = `/api/exportar-csv?${params}`;
+}
+
+// Carga inicial con calientes
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('f-temp').value = 'CALIENTE';
+  cargarTabla();
+});
 </script>
 </body>
 </html>
