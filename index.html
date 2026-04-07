@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CALUD.IO — Tu presencia digital en salud</title>
+  <meta name="description" content="Páginas web profesionales para médicos, odontólogos, kinesiólogos, nutricionistas y psicólogos en Argentina. Más pacientes, más turnos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Paleta principal */
+      --color-primary:   #2CA6A4;
+      --color-secondary: #1E5F74;
+      --color-bg-light:  #F4F6F8;
+      --color-text-muted:#6B7280;
+      --color-white:     #FFFFFF;
+
+      /* Tema oscuro */
+      --bg:       #070d1a;
+      --surface:  #0f1c2e;
+      --border:   #1e3048;
+      --accent:   #2CA6A4;
+      --accent2:  #1E5F74;
+      --text:     #e8f0fe;
+      --muted:    #7a90a8;
+      --gradient: linear-gradient(135deg, #2CA6A4, #1E5F74);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ───────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(7,13,26,.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: .9rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    .logo-calud { color: #1E5F74; }
+    .logo-io    { color: #2CA6A4; }
+    nav a {
+      color: var(--muted); text-decoration: none;
+      font-size: .9rem; margin-left: 1.5rem; transition: color .2s;
+    }
+    nav a:hover { color: var(--text); }
+    .nav-cta {
+      color: var(--accent) !important;
+      font-weight: 600;
+    }
+
+    /* ── HERO ──────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(ellipse, rgba(44,166,164,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(44,166,164,.08); border: 1px solid rgba(44,166,164,.25);
+      color: var(--accent); font-size: .8rem; font-weight: 600;
+      padding: .35rem 1rem; border-radius: 99px; margin-bottom: 1.5rem;
+      letter-spacing: .04em;
+    }
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      font-weight: 700; line-height: 1.1; margin-bottom: 1.2rem;
+    }
+    .hero h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--muted); max-width: 580px; margin: 0 auto 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    /* ── BOTONES ───────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--gradient); color: #fff; font-weight: 700;
+      padding: .9rem 2.2rem; border-radius: 8px; text-decoration: none;
+      font-size: 1rem; transition: opacity .2s, transform .15s;
+      border: none; cursor: pointer; font-family: inherit;
+    }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-block;
+      color: var(--text); border: 1px solid var(--border);
+      padding: .85rem 2rem; border-radius: 8px; text-decoration: none;
+      font-size: 1rem; transition: border-color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); }
+    .btn-outline {
+      display: inline-block;
+      color: var(--accent); border: 1px solid var(--accent);
+      padding: .7rem 1.6rem; border-radius: 8px; text-decoration: none;
+      font-size: .95rem; transition: background .2s, color .2s;
+    }
+    .btn-outline:hover { background: var(--accent); color: #fff; }
+
+    /* ── STATS ─────────────────────────────────────── */
+    .stats {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      padding: 2.5rem 1.5rem;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem; font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: .85rem; color: var(--muted); margin-top: .2rem; }
+
+    /* ── SECCIONES ─────────────────────────────────── */
+    section { padding: 5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      color: var(--accent); font-size: .8rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase; margin-bottom: .75rem;
+    }
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; line-height: 1.2; margin-bottom: 1rem;
+    }
+    h2 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .sub { color: var(--muted); font-size: 1.05rem; max-width: 540px; margin-bottom: 3rem; }
+
+    /* ── CARDS SERVICIOS ───────────────────────────── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.8rem;
+      transition: border-color .25s, transform .2s;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(44,166,164,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.1rem;
+    }
+    .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
+    .card p { color: var(--muted); font-size: .92rem; }
+
+    /* ── PROFESIONES ───────────────────────────────── */
+    .prof-grid { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .prof-pill {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: .55rem 1.1rem; border-radius: 99px; font-size: .9rem;
+      transition: border-color .2s;
+    }
+    .prof-pill:hover { border-color: var(--accent); }
+    .prof-preview { cursor: pointer; }
+    .prof-preview:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .prof-preview::after { content: ' →'; font-size: .8rem; opacity: .7; }
+
+    /* ── MODAL PREVIEW ─────────────────────────────── */
+    .preview-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .preview-overlay.open { display: flex; }
+    .preview-modal {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      width: 90vw; max-width: 1000px; height: 82vh;
+      display: flex; flex-direction: column;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35);
+    }
+    .preview-header {
+      background: #f4f6f8; border-bottom: 1px solid #e2e8f0;
+      padding: .75rem 1.25rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    .preview-header-bar {
+      display: flex; gap: .4rem; align-items: center;
+    }
+    .preview-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .preview-url {
+      flex: 1; margin: 0 1rem; background: #fff; border: 1px solid #d1d5db;
+      border-radius: 6px; padding: .3rem .75rem; font-size: .82rem; color: #6b7280;
+      font-family: monospace;
+    }
+    .preview-close {
+      background: none; border: none; font-size: 1.4rem; cursor: pointer;
+      color: #6b7280; line-height: 1; padding: 0 .25rem;
+    }
+    .preview-close:hover { color: #111; }
+    .preview-frame { flex: 1; border: none; width: 100%; }
+    .preview-footer {
+      background: #f4f6f8; border-top: 1px solid #e2e8f0;
+      padding: .6rem 1.25rem; text-align: center; font-size: .78rem; color: #6b7280;
+    }
+
+    /* ── PROCESO ───────────────────────────────────── */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+    .step { display: flex; gap: 1rem; }
+    .step-num {
+      flex-shrink: 0;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: .9rem; color: #fff;
+    }
+    .step h4 { font-weight: 700; margin-bottom: .3rem; }
+    .step p { color: var(--muted); font-size: .9rem; }
+
+    /* ── BOT IA BLOCK ──────────────────────────────── */
+    .ia-block-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 4rem 1.5rem;
+    }
+    .ia-block {
+      max-width: 1100px; margin: 0 auto;
+      background: rgba(44,166,164,.06);
+      border: 1px solid rgba(44,166,164,.25);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      display: flex; gap: 2rem; align-items: flex-start;
+    }
+    .ia-block-icon {
+      flex-shrink: 0;
+      font-size: 3rem; line-height: 1;
+      padding-top: .25rem;
+    }
+    .ia-block-body { flex: 1; }
+    .ia-badge-new {
+      display: inline-block;
+      background: #ff6b35; color: #fff;
+      font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+      padding: .2rem .7rem; border-radius: 99px;
+      text-transform: uppercase; margin-bottom: .75rem;
+    }
+    .ia-block-body h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem; font-weight: 700; margin-bottom: .75rem;
+    }
+    .ia-block-body > p { color: var(--muted); margin-bottom: 1.2rem; }
+    .ia-commands {
+      display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.5rem;
+    }
+    .ia-cmd {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(44,166,164,.08); border: 1px solid rgba(44,166,164,.2);
+      padding: .5rem 1rem; border-radius: 8px; font-size: .88rem;
+      color: var(--text); width: fit-content;
+    }
+    .ia-cmd::before { content: '💬'; font-size: .85rem; }
+    .ia-note { color: var(--muted); font-size: .88rem; font-style: italic; }
+
+    /* ── PRECIOS ───────────────────────────────────── */
+    .pricing-section {
+      padding: 5rem 1.5rem; max-width: 1100px; margin: 0 auto;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem; margin-bottom: 2.5rem;
+    }
+    .plan-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 2rem;
+      display: flex; flex-direction: column;
+      position: relative; transition: transform .2s;
+    }
+    .plan-card:hover { transform: translateY(-4px); }
+    .plan-card.featured {
+      border: 2px solid #2CA6A4;
+    }
+    .plan-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: #2CA6A4; color: #fff;
+      font-size: .75rem; font-weight: 700; letter-spacing: .05em;
+      padding: .25rem 1rem; border-radius: 99px; white-space: nowrap;
+    }
+    .plan-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      color: var(--muted); text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: .5rem;
+    }
+    .plan-price {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--color-primary);
+      line-height: 1.1; margin-bottom: .25rem;
+    }
+    .plan-price small {
+      font-size: .85rem; color: var(--muted); font-weight: 400;
+    }
+    .plan-usd { font-size: .85rem; color: var(--muted); margin-bottom: .5rem; }
+    .plan-commitment {
+      font-size: .8rem; color: var(--muted);
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      padding: .25rem .75rem; border-radius: 99px;
+      display: inline-block; margin-bottom: 1.4rem;
+    }
+    .plan-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 1.2rem; }
+    .plan-features { list-style: none; flex: 1; margin-bottom: 1.5rem; }
+    .plan-features li {
+      font-size: .9rem; padding: .35rem 0;
+      display: flex; align-items: flex-start; gap: .6rem;
+    }
+    .plan-features li .fi { flex-shrink: 0; font-style: normal; }
+    .fi-yes { color: #2CA6A4; }
+    .fi-no  { color: #9CA3AF; }
+    .plan-note {
+      font-size: .82rem; color: var(--muted);
+      font-style: italic; border-top: 1px solid var(--border);
+      padding-top: .9rem; margin-top: auto;
+    }
+
+    /* Addons */
+    .addons-wrap {
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.5rem 2rem;
+      background: var(--surface);
+    }
+    .addons-wrap h4 {
+      font-size: .85rem; font-weight: 600;
+      color: var(--muted); text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: 1rem;
+    }
+    .addons-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .addons-list li {
+      font-size: .9rem; display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+    }
+    .addon-price {
+      background: rgba(44,166,164,.1); color: var(--accent);
+      font-size: .8rem; font-weight: 600;
+      padding: .15rem .65rem; border-radius: 99px;
+    }
+
+    /* ── TURNOS DEMO ───────────────────────────────── */
+    .demo-section {
+      padding: 5rem 1.5rem; max-width: 900px; margin: 0 auto;
+    }
+    .demo-badge-preview {
+      display: inline-block;
+      background: rgba(255,165,0,.12); border: 1px solid rgba(255,165,0,.3);
+      color: #ffb347; font-size: .75rem; font-weight: 700;
+      padding: .25rem .9rem; border-radius: 99px;
+      letter-spacing: .05em; text-transform: uppercase; margin-left: .75rem;
+      vertical-align: middle;
+    }
+    .demo-widget {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,.4);
+    }
+    .demo-widget-header {
+      background: var(--cal-header-bg, rgba(44,166,164,.1));
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+    .demo-widget-header label {
+      font-size: .85rem; color: var(--muted); margin-right: .25rem;
+    }
+    .demo-widget-header select {
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); padding: .45rem .9rem;
+      border-radius: 8px; font-family: inherit; font-size: .9rem;
+      outline: none; cursor: pointer;
+    }
+    .demo-body {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 380px;
+    }
+    .demo-calendar { padding: 1.5rem; border-right: 1px solid var(--border); }
+    .demo-calendar h4 {
+      font-size: .85rem; color: var(--cal-p, #2CA6A4); text-align: center;
+      margin-bottom: 1rem; text-transform: uppercase; letter-spacing: .06em;
+    }
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 4px; text-align: center;
+    }
+    .cal-day-name {
+      font-size: .7rem; color: var(--cal-p, #2CA6A4); font-weight: 600;
+      padding: .3rem 0; text-transform: uppercase; opacity: .6;
+    }
+    .cal-day {
+      width: 34px; height: 34px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .82rem; margin: 0 auto;
+      transition: background .15s, color .15s;
+    }
+    .cal-day.empty   { pointer-events: none; }
+    .cal-day.past    { color: var(--border); pointer-events: none; }
+    .cal-day.weekend { color: var(--muted); pointer-events: none; opacity: .5; }
+    .cal-day.available {
+      background: var(--cal-bg, rgba(44,166,164,.15)); color: var(--cal-p, #2CA6A4);
+      cursor: pointer; font-weight: 600;
+    }
+    .cal-day.available:hover { background: var(--cal-bg-h, rgba(44,166,164,.3)); }
+    .cal-day.selected {
+      background: var(--cal-p, #2CA6A4) !important; color: #fff !important;
+    }
+    .demo-panel {
+      padding: 1.5rem;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .demo-panel-title {
+      font-size: .85rem; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    .slots-grid {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+    }
+    .slot-btn {
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); padding: .5rem 1rem;
+      border-radius: 8px; cursor: pointer; font-size: .88rem;
+      transition: border-color .15s, background .15s;
+      font-family: inherit;
+    }
+    .slot-btn:hover    { border-color: var(--accent); }
+    .slot-btn.selected { border-color: var(--accent); background: rgba(44,166,164,.15); color: var(--accent); }
+    .demo-form { display: flex; flex-direction: column; gap: .75rem; }
+    .demo-form input {
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); padding: .6rem .9rem;
+      border-radius: 8px; font-family: inherit; font-size: .9rem;
+      outline: none; transition: border-color .2s;
+    }
+    .demo-form input:focus { border-color: var(--accent); }
+    .demo-form button {
+      background: var(--gradient); color: #fff; border: none;
+      padding: .7rem; border-radius: 8px; cursor: pointer;
+      font-size: .9rem; font-weight: 700; font-family: inherit;
+      transition: opacity .2s;
+    }
+    .demo-form button:hover { opacity: .9; }
+    .demo-success {
+      text-align: center; padding: 1rem;
+      color: var(--accent); font-weight: 600;
+      background: rgba(44,166,164,.08); border-radius: 12px;
+      border: 1px solid rgba(44,166,164,.2);
+    }
+    .demo-placeholder {
+      color: var(--muted); font-size: .9rem;
+      text-align: center; padding: 2rem 1rem;
+    }
+
+    /* ── PRIMERA RESEÑA (reemplaza testimonios) ────── */
+    .first-review {
+      background: rgba(44,166,164,.05);
+      border: 1px solid rgba(44,166,164,.15);
+      border-radius: 20px; padding: 2.5rem 2rem;
+      text-align: center; max-width: 600px;
+    }
+    .first-review p {
+      color: var(--muted); margin-bottom: 1.5rem; font-size: 1rem;
+    }
+
+    /* ── CTA FINAL ─────────────────────────────────── */
+    .cta-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      text-align: center; padding: 5rem 1.5rem;
+    }
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p  { color: var(--muted); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+    /* ── CONTACTO ──────────────────────────────────── */
+    .contact-form { max-width: 500px; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: .4rem; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); padding: .7rem 1rem; border-radius: 8px;
+      font-size: .95rem; font-family: inherit; outline: none; transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-success {
+      background: rgba(44,166,164,.1);
+      border: 1px solid rgba(44,166,164,.3);
+      color: var(--accent); border-radius: 12px;
+      padding: 1.5rem; font-weight: 600; font-size: 1rem;
+      text-align: center;
+    }
+
+    /* ── FOOTER ────────────────────────────────────── */
+    footer {
+      text-align: center; padding: 2.5rem 1.5rem;
+      color: var(--muted); font-size: .85rem;
+      border-top: 1px solid var(--border);
+    }
+    footer .footer-logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: 1.1rem; margin-bottom: .4rem;
+      display: block;
+    }
+    footer .footer-links { margin: .75rem 0; }
+    footer .footer-links a {
+      color: var(--muted); text-decoration: none;
+      margin: 0 .75rem; font-size: .85rem; transition: color .2s;
+    }
+    footer .footer-links a:hover { color: var(--text); }
+
+    /* ── WHATSAPP FLOTANTE ─────────────────────────── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      transition: transform .2s, box-shadow .2s;
+      text-decoration: none;
+    }
+    .wa-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(37,211,102,.6);
+    }
+    .wa-float svg { width: 30px; height: 30px; }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 700px) {
+      nav .nav-links { display: none; }
+      .ia-block { flex-direction: column; }
+      .demo-body { grid-template-columns: 1fr; }
+      .demo-calendar { border-right: none; border-bottom: 1px solid var(--border); }
+      .btn-ghost { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     NAV
+════════════════════════════════════════ -->
+<nav>
+  <a class="logo" href="#" style="display:flex;align-items:center;gap:.6rem;text-decoration:none;">
+    <svg width="50" height="50" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="34" height="34" rx="8" fill="#1E5F74"/>
+      <rect x="7" y="14" width="20" height="13" rx="2" stroke="#fff" stroke-width="1.8"/>
+      <path d="M12 27v2M22 27v2M10 29h14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M17 11V7M15 9h4" stroke="#2CA6A4" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="24" cy="11" r="3.5" stroke="#2CA6A4" stroke-width="1.6"/>
+      <path d="M17 17v4M15 19h4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.7rem;line-height:1;letter-spacing:-.01em;"><span style="color:#1E5F74;">CALUD</span><span style="color:#2CA6A4;">.IO</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">Cómo funciona</a>
+    <a href="#precios">Precios</a>
+    <a href="#contacto" class="nav-cta">Quiero mi web</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-badge">Especialistas en salud digital · Buenos Aires</div>
+  <h1>Tu consultorio merece<br><span>una web profesional</span></h1>
+  <p>Creamos páginas web para profesionales de la salud en Buenos Aires y GBA. Diseño moderno, turnos online y más pacientes desde el primer mes.</p>
+  <div class="hero-actions">
+    <a href="#contacto" class="btn-primary">Quiero mi web</a>
+    <a href="#servicios" class="btn-ghost">Ver más</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     SERVICIOS
+════════════════════════════════════════ -->
+<section id="servicios">
+  <div class="section-tag">Lo que hacemos</div>
+  <h2>Todo lo que necesitás<br><span>para estar en internet</span></h2>
+  <p class="sub">Sin tecnicismos, sin complicaciones. Te entregamos tu web lista para funcionar.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <h3>Diseño profesional</h3>
+      <p>Página a tu medida, con tu foto, tus especialidades y tus horarios. Moderna y confiable desde el primer vistazo.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <h3>Turnos online</h3>
+      <p>Tus pacientes reservan turno 24/7 sin llamarte. Integración con WhatsApp o sistema de agenda propio.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📍</div>
+      <h3>Google Maps</h3>
+      <p>Aparecés en las búsquedas locales cuando alguien busca tu especialidad cerca tuyo.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h3>100% mobile</h3>
+      <p>El 80% de tus futuros pacientes te busca desde el celular. Tu web se ve perfecta en cualquier pantalla.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h3>Dominio + Hosting</h3>
+      <p>Nos encargamos de todo: nombre de dominio, certificado de seguridad SSL y hosting incluido.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚀</div>
+      <h3>Entrega en 48 hs</h3>
+      <p>Completás un formulario, nosotros armamos tu web y en dos días ya estás online.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     PROFESIONES
+════════════════════════════════════════ -->
+<section style="padding-top: 0;">
+  <div class="section-tag">Especialidades</div>
+  <h2>Trabajamos con <span>todos los profesionales</span> de la salud</h2>
+  <br>
+  <div class="prof-grid">
+    <div class="prof-pill prof-preview" data-preview="landing/preview-odontologo.html" title="Ver demo">🦷 Odontólogos</div>
+    <div class="prof-pill prof-preview" data-preview="landing/preview-psicologo.html" title="Ver demo">🧠 Psicólogos</div>
+    <div class="prof-pill prof-preview" data-preview="landing/preview-nutricionista.html" title="Ver demo">🥗 Nutricionistas</div>
+    <div class="prof-pill prof-preview" data-preview="landing/preview-kinesiologo.html" title="Ver demo">💪 Kinesiólogos</div>
+    <div class="prof-pill prof-preview" data-preview="landing/preview-oftalmologo.html" title="Ver demo">👁️ Oftalmólogos</div>
+    <div class="prof-pill prof-preview" data-preview="landing/preview-cardiologo.html" title="Ver demo">🫀 Cardiólogos</div>
+    <div class="prof-pill prof-preview" data-preview="landing/preview-clinico.html" title="Ver demo">🩺 Clínicos</div>
+    <div class="prof-pill prof-preview" data-preview="landing/preview-pediatra.html" title="Ver demo">👶 Pediatras</div>
+    <div class="prof-pill prof-preview" data-preview="landing/preview-traumatologo.html" title="Ver demo">🦴 Traumatólogos</div>
+    <div class="prof-pill prof-preview" data-preview="landing/preview-personal-trainer.html" title="Ver demo">🏋️ Personal Trainers</div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     PROCESO
+════════════════════════════════════════ -->
+<section id="proceso">
+  <div class="section-tag">Cómo funciona</div>
+  <h2>Estar online nunca<br><span>fue tan fácil</span></h2>
+  <p class="sub">Cuatro pasos simples y tu web está lista.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h4>Nos contactás</h4>
+        <p>Completás el formulario de abajo o nos escribís por WhatsApp.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h4>Te hacemos preguntas</h4>
+        <p>Te pedimos tu foto, especialidades, horarios y zonas de atención.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h4>Armamos tu web</h4>
+        <p>En 48 horas tenés una vista previa para aprobar.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <h4>Publicamos</h4>
+        <p>Subimos tu web al dominio elegido y empezás a recibir pacientes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     BOT IA BLOCK
+════════════════════════════════════════ -->
+<div class="ia-block-wrap">
+  <div class="ia-block">
+    <div class="ia-block-icon">🤖</div>
+    <div class="ia-block-body">
+      <div class="ia-badge-new">Nuevo</div>
+      <h3>Tu web que se administra<br>sola con IA</h3>
+      <p>Con el Plan PRO, incorporamos un bot de inteligencia artificial directamente en tu web y en tu WhatsApp. Podés pedirle cosas como:</p>
+      <div class="ia-commands">
+        <span class="ia-cmd">"Actualizá mis horarios de verano"</span>
+        <span class="ia-cmd">"Agregá masajes deportivos a mis servicios"</span>
+        <span class="ia-cmd">"Cambiá mi foto de perfil"</span>
+        <span class="ia-cmd">"Respondé que no tengo turnos hasta el lunes"</span>
+      </div>
+      <p class="ia-note">Y tu web se actualiza en tiempo real, sin tocar código, sin llamar a nadie.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PRECIOS
+════════════════════════════════════════ -->
+<section id="precios" class="pricing-section">
+  <div class="section-tag">Planes y precios</div>
+  <h2>Elegí el plan que<br><span>mejor se adapta</span></h2>
+  <p class="sub">Sin letra chica. Con 1 paciente nuevo por mes, el plan se paga solo.</p>
+
+  <div class="pricing-grid">
+
+    <!-- PLAN ÚNICO -->
+    <div class="plan-card">
+      <div class="plan-name">Plan Único</div>
+      <div class="plan-price">USD 35</div>
+      <div class="plan-usd">Pago único</div>
+      <span class="plan-commitment">Sin compromiso mensual</span>
+      <hr class="plan-divider">
+      <ul class="plan-features">
+        <li><i class="fi fi-yes">✓</i> Sitio web estático con tus datos</li>
+        <li><i class="fi fi-yes">✓</i> Diseño profesional mobile-first</li>
+        <li><i class="fi fi-yes">✓</i> Botón de WhatsApp y Google Maps</li>
+        <li><i class="fi fi-yes">✓</i> Dominio sugerido (lo comprás vos)</li>
+        <li><i class="fi fi-no">–</i> Hosting no incluido</li>
+        <li><i class="fi fi-no">–</i> Sin sistema de turnos online</li>
+        <li><i class="fi fi-no">–</i> Sin mantenimiento</li>
+        <li><i class="fi fi-no">–</i> Sin bot IA</li>
+      </ul>
+      <a href="#contacto" class="btn-outline" style="text-align:center;">Empezar con Único</a>
+      <p class="plan-note">Para conocer el resultado antes de comprometerte.</p>
+    </div>
+
+    <!-- PLAN PROFESIONAL (destacado) -->
+    <div class="plan-card featured">
+      <div class="plan-badge">⭐ El más elegido</div>
+      <div class="plan-name">Plan Profesional</div>
+      <div class="plan-price">USD 25 <small>/mes</small></div>
+      <div class="plan-usd">Facturado mensualmente</div>
+      <span class="plan-commitment">Compromiso mínimo 3 meses</span>
+      <hr class="plan-divider">
+      <ul class="plan-features">
+        <li><i class="fi fi-yes">✓</i> Todo lo del Plan Único</li>
+        <li><i class="fi fi-yes">✓</i> Dominio + Hosting incluidos</li>
+        <li><i class="fi fi-yes">✓</i> 2 actualizaciones de contenido/mes</li>
+        <li><i class="fi fi-yes">✓</i> Sistema de turnos online incluido</li>
+        <li><i class="fi fi-yes">✓</i> SEO local — posicionamiento en Google Maps</li>
+        <li><i class="fi fi-yes">✓</i> Soporte por WhatsApp</li>
+        <li><i class="fi fi-no">–</i> Sin bot IA administrador</li>
+      </ul>
+      <a href="#contacto" class="btn-primary" style="justify-content:center;">Empezar con Profesional</a>
+      <p class="plan-note">Con 1 paciente nuevo por mes ya se paga solo.</p>
+    </div>
+
+    <!-- PLAN PRO + IA -->
+    <div class="plan-card">
+      <div class="plan-name">Plan PRO + IA</div>
+      <div class="plan-price">USD 55 <small>/mes</small></div>
+      <div class="plan-usd">Facturado mensualmente</div>
+      <span class="plan-commitment">Compromiso mínimo 3 meses</span>
+      <hr class="plan-divider">
+      <ul class="plan-features">
+        <li><i class="fi fi-yes">✓</i> Todo lo del Plan Profesional</li>
+        <li><i class="fi fi-yes">✓</i> Bot IA integrado en tu web</li>
+        <li><i class="fi fi-yes">✓</i> Editás tu web por chat</li>
+        <li><i class="fi fi-yes">✓</i> El bot responde consultas 24/7</li>
+        <li><i class="fi fi-yes">✓</i> Panel de administración visual</li>
+        <li><i class="fi fi-yes">✓</i> Reporte mensual de visitas</li>
+      </ul>
+      <a href="#contacto" class="btn-outline" style="text-align:center;">Empezar con PRO + IA</a>
+      <p class="plan-note">Tu web se maneja sola. Vos solo atendés pacientes.</p>
+    </div>
+
+  </div>
+
+  <!-- ADD-ONS -->
+  <div class="addons-wrap">
+    <h4>➕ Add-ons opcionales</h4>
+    <ul class="addons-list">
+      <li>
+        <span>Alta de dominio .com.ar gestionada por nosotros</span>
+        <span class="addon-price">USD 8 · único</span>
+      </li>
+      <li>
+        <span>Campaña de reseñas en Google</span>
+        <span class="addon-price">USD 15 · único</span>
+      </li>
+      <li>
+        <span>Sistema de turnos online <small style="color:var(--muted);font-weight:400;">(disponible para Plan Único)</small></span>
+        <span class="addon-price">USD 30 · único</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     DEMO TURNOS
+════════════════════════════════════════ -->
+<section id="turnos-demo" class="demo-section">
+  <div class="section-tag">Sistema de turnos</div>
+  <h2>Así ven tus pacientes<br><span>el sistema de turnos</span></h2>
+  <p class="sub" style="margin-bottom:2rem;">Probá seleccionar una fecha y un horario. Esto es exactamente lo que verían tus pacientes en tu web.</p>
+
+  <div class="demo-widget">
+    <div class="demo-widget-header">
+      <label for="demo-especialidad">Especialidad:</label>
+      <select id="demo-especialidad">
+        <option value="Odontología">🦷 Odontología</option>
+        <option value="Kinesiología">💪 Kinesiología</option>
+        <option value="Nutrición">🥗 Nutrición</option>
+        <option value="Psicología">🧠 Psicología</option>
+        <option value="Oftalmología">👁️ Oftalmología</option>
+        <option value="Cardiología">🫀 Cardiología</option>
+        <option value="Medicina Clínica">🩺 Medicina Clínica</option>
+        <option value="Pediatría">👶 Pediatría</option>
+        <option value="Traumatología">🦴 Traumatología</option>
+        <option value="Personal Trainer">🏋️ Personal Trainer</option>
+      </select>
+    </div>
+    <div class="demo-body">
+      <div class="demo-calendar">
+        <h4 id="demo-month-title"></h4>
+        <div class="cal-grid" id="demo-cal"></div>
+      </div>
+      <div class="demo-panel" id="demo-panel">
+        <div class="demo-placeholder">← Seleccioná un día disponible para ver los horarios</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     PRIMERA RESEÑA (sin reseñas inventadas)
+════════════════════════════════════════ -->
+<section style="padding-top: 0;">
+  <div class="section-tag">Testimonios</div>
+  <h2>¿Querés ser el <span>primero</span> en contarnos?</h2>
+  <br>
+  <div class="first-review">
+    <p>Estamos en pleno lanzamiento y buscamos profesionales de la salud en Buenos Aires y GBA que quieran ser los primeros en tener su web con CALUD.IO. Si lo probás, nos encantaría conocer tu experiencia.</p>
+    <a href="#contacto" class="btn-primary">Escribinos</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CTA OFERTA — CORREGIDA
+════════════════════════════════════════ -->
+<div class="cta-section">
+  <div class="section-tag">Oferta de lanzamiento</div>
+  <h2>Diseño <span>sin costo</span> en tu primer mes</h2>
+  <p>Armamos tu sitio web sin cobrar el diseño. Solo abonás el plan que elijas desde USD 25/mes, con dominio y hosting incluidos.</p>
+  <a href="#contacto" class="btn-primary">Quiero la mía</a>
+</div>
+
+<!-- ════════════════════════════════════════
+     CONTACTO — Netlify Forms
+════════════════════════════════════════ -->
+<section id="contacto">
+  <div class="section-tag">Contacto</div>
+  <h2>Empezá hoy,<br><span>en 48 hs estás online</span></h2>
+  <p class="sub">Completá el formulario y te contactamos a la brevedad.</p>
+
+  <form
+    id="contact-form"
+    class="contact-form"
+    name="contacto-caludio"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    onsubmit="handleSubmit(event)"
+  >
+    <input type="hidden" name="form-name" value="contacto-caludio">
+    <p style="display:none;">
+      <label>No llenar: <input name="bot-field"></label>
+    </p>
+
+    <div class="form-group">
+      <label>Nombre completo</label>
+      <input type="text" name="nombre" placeholder="Dr. Juan García" required>
+    </div>
+    <div class="form-group">
+      <label>Especialidad</label>
+      <select name="especialidad" required>
+        <option value="">Seleccioná tu especialidad</option>
+        <option>Odontólogo/a</option>
+        <option>Psicólogo/a</option>
+        <option>Nutricionista</option>
+        <option>Kinesiólogo/a</option>
+        <option>Médico clínico</option>
+        <option>Pediatra</option>
+        <option>Otra especialidad</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>WhatsApp o email de contacto</label>
+      <input type="text" name="contacto" placeholder="+54 9 11 1234-5678" required>
+    </div>
+    <div class="form-group">
+      <label>Zona de atención</label>
+      <input type="text" name="zona" placeholder="Ej: Palermo, CABA">
+    </div>
+    <div class="form-group">
+      <label>Plan de interés</label>
+      <select name="plan">
+        <option value="">No sé aún</option>
+        <option>Plan Único (USD 35 · único)</option>
+        <option>Plan Profesional (USD 25/mes)</option>
+        <option>Plan PRO + IA (USD 55/mes)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>¿Tenés web actualmente?</label>
+      <select name="web_actual">
+        <option>No tengo web</option>
+        <option>Sí, en Wix / similar</option>
+        <option>Sí, quiero mejorarla</option>
+      </select>
+    </div>
+    <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
+      Enviar — quiero mi web
+    </button>
+  </form>
+</section>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <span class="footer-logo">
+    <span style="color:#1E5F74;">CALUD</span><span style="color:#2CA6A4;">.IO</span>
+  </span>
+  <div class="footer-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#precios">Precios</a>
+    <a href="#proceso">Cómo funciona</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <div>Presencia digital para profesionales de la salud en Buenos Aires y GBA · 2026</div>
+  <div style="margin-top:.5rem;">
+    <a
+      href="https://wa.me/541137009272?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20CALUD.IO"
+      target="_blank"
+      rel="noopener"
+      style="color:var(--accent); text-decoration:none; font-size:.85rem;"
+    >Contactar por WhatsApp →</a>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════
+     WHATSAPP FLOTANTE
+════════════════════════════════════════ -->
+<a
+  href="https://wa.me/541137009272?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20CALUD.IO"
+  class="wa-float"
+  target="_blank"
+  rel="noopener"
+  aria-label="Contactar por WhatsApp"
+>
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════ -->
+<script>
+// ── FORMULARIO NETLIFY ──────────────────────────────
+async function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn  = form.querySelector('button[type="submit"]');
+  btn.textContent = 'Enviando...';
+  btn.disabled    = true;
+
+  try {
+    await fetch('/', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body:    new URLSearchParams(new FormData(form)).toString()
+    });
+    form.innerHTML =
+      '<div class="form-success">✓ Recibimos tu consulta. Te contactamos en menos de 24 horas.</div>';
+  } catch (_) {
+    // fallback: submit nativo (Netlify lo procesa igual)
+    form.submit();
+  }
+}
+
+// ── DEMO TURNOS ─────────────────────────────────────
+(function() {
+  const SLOTS = ['9:00', '10:30', '12:00', '16:00', '17:30'];
+  const DAY_NAMES = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  const MONTH_NAMES = [
+    'Enero','Febrero','Marzo','Abril','Mayo','Junio',
+    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'
+  ];
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  let selectedDay  = null;
+  let selectedSlot = null;
+
+  function isAvailable(date) {
+    const dow = date.getDay(); // 0=dom, 6=sáb
+    if (dow === 0 || dow === 6) return false;
+    if (date < today) return false;
+    // Simular algunos días no disponibles (~1 de cada 5 días hábiles)
+    return (date.getDate() % 5) !== 0;
+  }
+
+  function renderCalendar() {
+    const now   = new Date();
+    const year  = now.getFullYear();
+    const month = now.getMonth();
+
+    document.getElementById('demo-month-title').textContent =
+      MONTH_NAMES[month] + ' ' + year;
+
+    const cal = document.getElementById('demo-cal');
+    cal.innerHTML = '';
+
+    // Cabecera días
+    DAY_NAMES.forEach(d => {
+      const el = document.createElement('div');
+      el.className = 'cal-day-name';
+      el.textContent = d;
+      cal.appendChild(el);
+    });
+
+    const firstDay = new Date(year, month, 1).getDay();
+    // Blancos al inicio
+    for (let i = 0; i < firstDay; i++) {
+      const el = document.createElement('div');
+      el.className = 'cal-day empty';
+      cal.appendChild(el);
+    }
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(year, month, d);
+      const el   = document.createElement('div');
+      el.textContent = d;
+
+      if (date < today) {
+        el.className = 'cal-day past';
+      } else if (date.getDay() === 0 || date.getDay() === 6) {
+        el.className = 'cal-day weekend';
+      } else if (isAvailable(date)) {
+        el.className = 'cal-day available';
+        if (selectedDay && selectedDay.getDate() === d) el.classList.add('selected');
+        el.addEventListener('click', () => onDayClick(date, el));
+      } else {
+        el.className = 'cal-day past';
+      }
+      cal.appendChild(el);
+    }
+  }
+
+  function onDayClick(date, el) {
+    selectedDay  = date;
+    selectedSlot = null;
+    document.querySelectorAll('.cal-day.selected').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected');
+    renderPanel();
+  }
+
+  function renderPanel() {
+    const panel = document.getElementById('demo-panel');
+    if (!selectedDay) {
+      panel.innerHTML = '<div class="demo-placeholder">← Seleccioná un día disponible</div>';
+      return;
+    }
+
+    const esp = document.getElementById('demo-especialidad').value;
+    const fechaStr = DAY_NAMES[selectedDay.getDay()] + ' ' +
+                     selectedDay.getDate() + ' de ' +
+                     MONTH_NAMES[selectedDay.getMonth()];
+
+    if (!selectedSlot) {
+      panel.innerHTML = `
+        <div class="demo-panel-title">Horarios disponibles</div>
+        <div style="font-size:.82rem; color:var(--muted); margin-bottom:.5rem;">${esp} · ${fechaStr}</div>
+        <div class="slots-grid">
+          ${SLOTS.map(s => `<button class="slot-btn" data-slot="${s}">${s}</button>`).join('')}
+        </div>
+      `;
+      panel.querySelectorAll('.slot-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectedSlot = btn.dataset.slot;
+          renderPanel();
+        });
+      });
+    } else {
+      panel.innerHTML = `
+        <div class="demo-panel-title">Confirmá tu turno</div>
+        <div style="font-size:.82rem; color:var(--accent); margin-bottom:.75rem; font-weight:600;">
+          📅 ${esp} · ${fechaStr} · ${selectedSlot}
+        </div>
+        <form class="demo-form" onsubmit="return false;" id="demo-form-inner">
+          <input type="text"  placeholder="Nombre"   required>
+          <input type="text"  placeholder="Apellido" required>
+          <input type="tel"   placeholder="WhatsApp (+54 9 11...)" required>
+          <button type="submit">Confirmar turno</button>
+        </form>
+      `;
+      document.getElementById('demo-form-inner').addEventListener('submit', () => {
+        panel.innerHTML = `
+          <div class="demo-success">
+            ✓ Tu turno fue reservado.<br>
+            <span style="font-size:.88rem;font-weight:400;color:var(--muted)">
+              Te contactaremos por WhatsApp para confirmarlo.
+            </span>
+          </div>
+          <div style="text-align:center;margin-top:1rem;">
+            <button class="slot-btn" id="demo-reset">← Pedir otro turno</button>
+          </div>
+        `;
+        document.getElementById('demo-reset').addEventListener('click', () => {
+          selectedDay  = null;
+          selectedSlot = null;
+          document.querySelectorAll('.cal-day.selected').forEach(e => e.classList.remove('selected'));
+          renderPanel();
+        });
+      });
+    }
+  }
+
+  const CAL_COLORS = {
+    'Odontología':     { p: '#1a56a0', bg: 'rgba(26,86,160,.13)',   bgh: 'rgba(26,86,160,.25)',   hbg: 'rgba(26,86,160,.08)'   },
+    'Kinesiología':    { p: '#0d7a5f', bg: 'rgba(13,122,95,.13)',   bgh: 'rgba(13,122,95,.25)',   hbg: 'rgba(13,122,95,.07)'   },
+    'Nutrición':       { p: '#b45309', bg: 'rgba(180,83,9,.13)',    bgh: 'rgba(180,83,9,.25)',    hbg: 'rgba(180,83,9,.07)'    },
+    'Psicología':      { p: '#5b21b6', bg: 'rgba(91,33,182,.13)',   bgh: 'rgba(91,33,182,.25)',   hbg: 'rgba(91,33,182,.07)'   },
+    'Oftalmología':    { p: '#0891b2', bg: 'rgba(8,145,178,.13)',   bgh: 'rgba(8,145,178,.25)',   hbg: 'rgba(8,145,178,.07)'   },
+    'Cardiología':     { p: '#e11d48', bg: 'rgba(225,29,72,.13)',   bgh: 'rgba(225,29,72,.25)',   hbg: 'rgba(225,29,72,.07)'   },
+    'Medicina Clínica':{ p: '#1e5f74', bg: 'rgba(30,95,116,.13)',   bgh: 'rgba(30,95,116,.25)',   hbg: 'rgba(30,95,116,.07)'   },
+    'Pediatría':       { p: '#ea580c', bg: 'rgba(234,88,12,.13)',   bgh: 'rgba(234,88,12,.25)',   hbg: 'rgba(234,88,12,.07)'   },
+    'Traumatología':   { p: '#4338ca', bg: 'rgba(67,56,202,.13)',   bgh: 'rgba(67,56,202,.25)',   hbg: 'rgba(67,56,202,.07)'   },
+    'Personal Trainer':{ p: '#16a34a', bg: 'rgba(22,163,74,.13)',   bgh: 'rgba(22,163,74,.25)',   hbg: 'rgba(22,163,74,.07)'   },
+  };
+
+  function applyCalendarColor() {
+    const esp    = document.getElementById('demo-especialidad').value;
+    const c      = CAL_COLORS[esp] || { p: '#2CA6A4', bg: 'rgba(44,166,164,.15)', bgh: 'rgba(44,166,164,.3)', hbg: 'rgba(44,166,164,.08)' };
+    const widget = document.querySelector('.demo-widget');
+    widget.style.setProperty('--cal-p',          c.p);
+    widget.style.setProperty('--cal-bg',         c.bg);
+    widget.style.setProperty('--cal-bg-h',       c.bgh);
+    widget.style.setProperty('--cal-header-bg',  c.hbg);
+  }
+
+  document.getElementById('demo-especialidad')
+    .addEventListener('change', () => {
+      selectedDay  = null;
+      selectedSlot = null;
+      document.querySelectorAll('.cal-day.selected').forEach(e => e.classList.remove('selected'));
+      applyCalendarColor();
+      renderPanel();
+    });
+
+  applyCalendarColor();
+
+  renderCalendar();
+  renderPanel();
+})();
+</script>
+
+<!-- MODAL PREVIEW DE ESPECIALIDADES -->
+<div class="preview-overlay" id="previewOverlay">
+  <div class="preview-modal">
+    <div class="preview-header">
+      <div class="preview-header-bar">
+        <div class="preview-dot" style="background:#ff5f57;"></div>
+        <div class="preview-dot" style="background:#febc2e;"></div>
+        <div class="preview-dot" style="background:#28c840;"></div>
+      </div>
+      <div class="preview-url" id="previewUrl">calud.io/tu-nombre</div>
+      <button class="preview-close" onclick="cerrarPreview()">×</button>
+    </div>
+    <iframe class="preview-frame" id="previewFrame" src="" sandbox="allow-same-origin allow-scripts"></iframe>
+    <div class="preview-footer">Vista previa de ejemplo · El sitio real se personaliza con tus datos</div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.prof-preview').forEach(function(pill) {
+  pill.addEventListener('click', function() {
+    var src = this.getAttribute('data-preview');
+    var label = this.textContent.replace('→','').trim();
+    document.getElementById('previewFrame').src = src;
+    document.getElementById('previewUrl').textContent = 'calud.io/' + label.toLowerCase().replace(/[^a-z]/g,'');
+    document.getElementById('previewOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+document.getElementById('previewOverlay').addEventListener('click', function(e) {
+  if (e.target === this) cerrarPreview();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') cerrarPreview();
+});
+function cerrarPreview() {
+  document.getElementById('previewOverlay').classList.remove('open');
+  document.getElementById('previewFrame').src = '';
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Fernando Rios — Traumatólogo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --p:#4338ca; --pd:#3730a3; --pl:#e0e7ff; --ac:#818cf8; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Inter',sans-serif; color:#1f2937; background:#f9fafb; }
+    a { color:inherit; text-decoration:none; }
+    .topbar { background:var(--pd); color:#fff; font-size:.78rem; padding:.45rem 1.5rem; display:flex; gap:1.5rem; flex-wrap:wrap; }
+    .topbar span { display:flex; align-items:center; gap:.4rem; opacity:.9; }
+    nav { background:#fff; border-bottom:1px solid #e5e7eb; padding:.9rem 1.5rem; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+    .nav-brand { font-family:'Lora',serif; font-size:1.2rem; font-weight:700; color:var(--p); }
+    .nav-brand span { font-size:.75rem; font-family:'Inter',sans-serif; font-weight:400; color:#6b7280; display:block; }
+    .nav-cta { background:var(--p); color:#fff; padding:.5rem 1.1rem; border-radius:6px; font-size:.85rem; font-weight:600; }
+    .hero { background:linear-gradient(135deg,var(--pd) 0%,var(--p) 60%,#6366f1 100%); color:#fff; padding:3.5rem 1.5rem; }
+    .hero-inner { max-width:900px; margin:auto; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+    .hero h1 { font-family:'Lora',serif; font-size:2rem; font-weight:700; line-height:1.25; margin-bottom:.6rem; }
+    .hero .sub { font-size:1rem; opacity:.85; margin-bottom:1.4rem; }
+    .badge-row { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.6rem; }
+    .badge { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:20px; padding:.3rem .85rem; font-size:.78rem; font-weight:500; }
+    .hero-btns { display:flex; gap:.8rem; flex-wrap:wrap; }
+    .btn-primary { background:#fff; color:var(--pd); padding:.7rem 1.4rem; border-radius:7px; font-weight:700; font-size:.9rem; }
+    .btn-outline { border:2px solid rgba(255,255,255,.7); color:#fff; padding:.7rem 1.4rem; border-radius:7px; font-weight:600; font-size:.9rem; }
+    .hero-card { background:rgba(255,255,255,.12); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.2); border-radius:14px; padding:1.6rem; }
+    .stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .stat { text-align:center; }
+    .stat .val { font-family:'Lora',serif; font-size:1.8rem; font-weight:700; }
+    .stat .lbl { font-size:.75rem; opacity:.8; margin-top:.2rem; }
+    .stars { color:#fbbf24; font-size:1rem; letter-spacing:1px; margin:.6rem 0 .3rem; text-align:center; }
+    .rating-note { font-size:.75rem; opacity:.75; text-align:center; }
+    section { padding:3rem 1.5rem; }
+    .sec-inner { max-width:900px; margin:auto; }
+    .sec-title { font-family:'Lora',serif; font-size:1.5rem; font-weight:700; color:var(--pd); margin-bottom:.4rem; }
+    .sec-line { width:48px; height:3px; background:var(--ac); border-radius:2px; margin-bottom:1.6rem; }
+    .svc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.2rem; }
+    .svc-card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:1.3rem 1.2rem; transition:box-shadow .2s,border-color .2s; }
+    .svc-card:hover { box-shadow:0 4px 16px rgba(67,56,202,.12); border-color:var(--ac); }
+    .svc-icon { width:40px; height:40px; background:var(--pl); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:.8rem; }
+    .svc-icon svg { width:20px; height:20px; stroke:var(--p); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .svc-name { font-weight:600; font-size:.92rem; color:var(--pd); margin-bottom:.3rem; }
+    .svc-desc { font-size:.82rem; color:#6b7280; line-height:1.5; }
+    .sobre { background:var(--pl); }
+    .sobre-inner { display:grid; grid-template-columns:1fr 2fr; gap:2.5rem; align-items:center; }
+    .avatar { width:120px; height:120px; background:var(--p); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:auto; }
+    .avatar span { font-family:'Lora',serif; font-size:2.8rem; font-weight:700; color:#fff; }
+    .sobre p { font-size:.93rem; color:#374151; line-height:1.7; }
+    .res-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.2rem; }
+    .res-card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:1.2rem; }
+    .res-stars { color:#f59e0b; font-size:.9rem; letter-spacing:1px; margin-bottom:.5rem; }
+    .res-text { font-size:.85rem; color:#374151; line-height:1.6; margin-bottom:.7rem; font-style:italic; }
+    .res-autor { font-size:.78rem; font-weight:600; color:var(--p); }
+    .hor-list { list-style:none; display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.6rem; }
+    .hor-list li { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:.6rem 1rem; font-size:.85rem; color:#374151; }
+    .hor-list li strong { color:var(--pd); font-weight:600; }
+    .contacto { background:var(--pd); color:#fff; text-align:center; }
+    .contacto .sec-title { color:#fff; }
+    .contacto p { opacity:.85; font-size:.92rem; margin-bottom:1.6rem; }
+    .contact-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .cta-wa { background:#25D366; color:#fff; padding:.75rem 1.5rem; border-radius:7px; font-weight:700; font-size:.9rem; display:flex; align-items:center; gap:.5rem; }
+    .cta-tel { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.4); color:#fff; padding:.75rem 1.5rem; border-radius:7px; font-weight:600; font-size:.9rem; }
+    .contact-detail { margin-top:1.6rem; font-size:.82rem; opacity:.7; }
+    footer { background:#111827; color:#9ca3af; text-align:center; padding:1.2rem; font-size:.78rem; }
+    footer a { color:var(--ac); }
+    .wa-float { position:fixed; bottom:1.5rem; right:1.5rem; z-index:200; width:54px; height:54px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(37,211,102,.4); }
+    .wa-float svg { width:28px; height:28px; fill:#fff; }
+    @media (max-width:640px) { .hero-inner,.sobre-inner { grid-template-columns:1fr; } .hero h1 { font-size:1.5rem; } }
+  </style>
+</head>
+<body>
+<div class="topbar">
+  <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Av. Cabildo 3200, Belgrano, CABA</span>
+  <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>011 4xxx-xxxx</span>
+  <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Lun–Vie 9:00–19:00</span>
+</div>
+<nav>
+  <div class="nav-brand">Dr. Fernando Rios<span>Traumatologo — Belgrano, CABA</span></div>
+  <a class="nav-cta" href="#contacto">Pedir turno</a>
+</nav>
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Traumatologia y cirugia ortopedica en Belgrano</h1>
+      <p class="sub">Diagnostico y tratamiento de lesiones oseas, articulares y musculares con tecnologia de primer nivel.</p>
+      <div class="badge-row"><span class="badge">Traumatologia</span><span class="badge">Artroscopia</span><span class="badge">Ortopedia</span></div>
+      <div class="hero-btns"><a href="#contacto" class="btn-primary">Pedir turno</a><a href="#servicios" class="btn-outline">Ver servicios</a></div>
+    </div>
+    <div class="hero-card">
+      <div class="stat-grid">
+        <div class="stat"><div class="val">+13</div><div class="lbl">Anos de experiencia</div></div>
+        <div class="stat"><div class="val">+700</div><div class="lbl">Cirugias realizadas</div></div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <div class="rating-note">4.9 · 48 reseñas en Google</div>
+    </div>
+  </div>
+</section>
+<section id="servicios">
+  <div class="sec-inner">
+    <div class="sec-title">Servicios</div>
+    <div class="sec-line"></div>
+    <div class="svc-grid">
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div class="svc-name">Consulta traumatologica</div><div class="svc-desc">Evaluacion y tratamiento de fracturas, esguinces, luxaciones y lesiones deportivas.</div></div>
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="svc-name">Artroscopia de rodilla</div><div class="svc-desc">Cirugia minima invasion para ligamentos cruzados, meniscos y cartilago.</div></div>
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="svc-name">Patologia de hombro</div><div class="svc-desc">Tratamiento de manguito rotador, luxacion y tendinitis del hombro.</div></div>
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M5 7l7-5 7 5v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/></svg></div><div class="svc-name">Ortopedia general</div><div class="svc-desc">Evaluacion y tratamiento de deformidades y alteraciones del aparato locomotor.</div></div>
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="svc-name">Infiltraciones</div><div class="svc-desc">Tratamiento con corticoides, acido hialuronico y plasma rico en plaquetas.</div></div>
+      <div class="svc-card"><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="svc-name">Lesiones deportivas</div><div class="svc-desc">Tratamiento orientado al deportista con objetivo de retorno rapido a la actividad.</div></div>
+    </div>
+  </div>
+</section>
+<section class="sobre">
+  <div class="sec-inner sobre-inner">
+    <div><div class="avatar"><span>FR</span></div></div>
+    <div>
+      <div class="sec-title">Sobre el profesional</div>
+      <div class="sec-line"></div>
+      <p>Traumatologo y cirujano ortopedico con mas de 13 anos de experiencia y mas de 700 cirugias realizadas. Especializado en artroscopia de rodilla y hombro, y en el tratamiento de lesiones deportivas. Consultorio propio en Belgrano con equipamiento de diagnostico completo y enfoque en la recuperacion funcional del paciente.</p>
+    </div>
+  </div>
+</section>
+<section id="resenas">
+  <div class="sec-inner">
+    <div class="sec-title">Lo que dicen los pacientes</div>
+    <div class="sec-line"></div>
+    <div class="res-grid">
+      <div class="res-card"><div class="res-stars">★★★★★</div><p class="res-text">"Me opere el ligamento cruzado con el Dr. Rios y la recuperacion fue excelente. Muy claro antes y despues de la cirugia, y siempre disponible para consultas."</p><div class="res-autor">Ignacio C.</div></div>
+      <div class="res-card"><div class="res-stars">★★★★★</div><p class="res-text">"Tenia una tendinitis de hombro cronica y con el tratamiento de infiltraciones mejore muchisimo. No tuve que operarme. Muy buen criterio clinico."</p><div class="res-autor">Marcela F.</div></div>
+      <div class="res-card"><div class="res-stars">★★★★★</div><p class="res-text">"Fui con una fractura de tobillo y me atendio excelente. Explico todo el proceso con mucha claridad y el seguimiento post-cirugia fue muy prolijo. Lo recomiendo."</p><div class="res-autor">Daniel W.</div></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="sec-inner">
+    <div class="sec-title">Horarios de atencion</div>
+    <div class="sec-line"></div>
+    <ul class="hor-list">
+      <li><strong>Lunes:</strong> 9:00 – 19:00</li>
+      <li><strong>Martes:</strong> 9:00 – 19:00</li>
+      <li><strong>Miercoles:</strong> 9:00 – 19:00</li>
+      <li><strong>Jueves:</strong> 9:00 – 19:00</li>
+      <li><strong>Viernes:</strong> 9:00 – 17:00</li>
+    </ul>
+  </div>
+</section>
+<section id="contacto" class="contacto">
+  <div class="sec-inner">
+    <div class="sec-title">Reservar turno</div>
+    <div class="sec-line" style="margin:auto .5rem auto auto;background:rgba(255,255,255,.4);"></div>
+    <p>Contactanos por WhatsApp o por telefono para coordinar tu consulta.</p>
+    <div class="contact-btns">
+      <a href="#" class="cta-wa"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.524 5.835L0 24l6.332-1.505A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.001-1.371l-.36-.213-3.757.893.952-3.67-.234-.376A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>WhatsApp</a>
+      <a href="#" class="cta-tel">Llamar al consultorio</a>
+    </div>
+    <div class="contact-detail">Av. Cabildo 3200, Belgrano, CABA &nbsp;|&nbsp; Lun–Vie 9:00–19:00</div>
+  </div>
+</section>
+<section id="turnos" style="background:#f3f4f6;padding:3rem 1.5rem;">
+  <div style="max-width:900px;margin:auto;">
+    <div style="font-family:'Lora',serif;font-size:1.5rem;font-weight:700;color:var(--pd);margin-bottom:.4rem;">Turno online</div>
+    <div style="width:48px;height:3px;background:var(--ac);border-radius:2px;margin-bottom:.8rem;"></div>
+    <p style="font-size:.9rem;color:#6b7280;margin-bottom:1.4rem;">Seleccioná un día disponible, elegí el horario y confirmá tu turno.</p>
+    <div class="tw"><div class="tw-cal"><div id="tw-month" style="font-size:.8rem;font-weight:700;color:var(--pd);text-align:center;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.9rem;"></div><div class="tw-grid" id="tw-grid"></div></div><div class="tw-panel" id="tw-panel"><div class="tw-ph">Seleccioná un dia del calendario</div></div></div>
+  </div>
+</section>
+<style>.tw{background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 2px 12px rgba(0,0,0,.05);}.tw-cal{padding:1.4rem;border-right:1px solid #e5e7eb;}.tw-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center;}.twd-n{font-size:.63rem;color:#9ca3af;font-weight:600;padding:.2rem 0;}.twd{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.76rem;margin:0 auto;cursor:default;}.twd.av{background:var(--pl);color:var(--p);cursor:pointer;font-weight:600;}.twd.av:hover,.twd.sl{background:var(--p)!important;color:#fff!important;}.twd.ps,.twd.wk{color:#d1d5db;}.tw-panel{padding:1.4rem;display:flex;flex-direction:column;gap:.9rem;}.tw-lbl{font-size:.75rem;font-weight:700;color:var(--pd);text-transform:uppercase;letter-spacing:.04em;}.tw-slots{display:flex;flex-wrap:wrap;gap:.45rem;}.tw-s{background:#f9fafb;border:1px solid #e5e7eb;padding:.38rem .85rem;border-radius:7px;cursor:pointer;font-size:.83rem;font-family:inherit;color:#374151;}.tw-s:hover,.tw-s.sl{border-color:var(--p);background:var(--pl);color:var(--p);}.tw-form{display:flex;flex-direction:column;gap:.55rem;}.tw-form input{border:1px solid #e5e7eb;border-radius:7px;padding:.5rem .85rem;font-family:inherit;font-size:.88rem;outline:none;}.tw-form input:focus{border-color:var(--p);}.tw-btn{background:var(--p);color:#fff;border:none;padding:.65rem;border-radius:7px;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer;margin-top:.2rem;}.tw-ok{text-align:center;padding:1.4rem;background:var(--pl);border-radius:10px;color:var(--pd);font-weight:600;line-height:1.6;}.tw-ph{color:#9ca3af;font-size:.86rem;text-align:center;padding:2rem 1rem;}@media(max-width:580px){.tw{grid-template-columns:1fr;}.tw-cal{border-right:none;border-bottom:1px solid #e5e7eb;}}</style>
+<script>(function(){var SL=['9:00','9:30','10:00','10:30','11:00','14:30','15:00','16:00','16:30','17:00'],ME=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],hoy=new Date();hoy.setHours(0,0,0,0);var sd=null,ss=null;function ok(d){return d>=hoy&&d.getDay()!==0&&d.getDay()!==6&&d.getDate()%5!==0;}function rc(){var y=hoy.getFullYear(),m=hoy.getMonth();document.getElementById('tw-month').textContent=ME[m]+' '+y;var g=document.getElementById('tw-grid');g.innerHTML='';['D','L','M','X','J','V','S'].forEach(function(n){var e=document.createElement('div');e.className='twd-n';e.textContent=n;g.appendChild(e);});var fd=new Date(y,m,1).getDay(),dim=new Date(y,m+1,0).getDate();for(var i=0;i<fd;i++){var e=document.createElement('div');e.className='twd';g.appendChild(e);}for(var d=1;d<=dim;d++){var dt=new Date(y,m,d),e=document.createElement('div');e.textContent=d;if(ok(dt)){e.className='twd av'+(sd&&sd.getDate()===d?' sl':'');(function(dt,e){e.onclick=function(){sd=dt;ss=null;rc();rp();};})(dt,e);}else{e.className='twd '+(dt<hoy?'ps':'wk');}g.appendChild(e);}}function rp(){var p=document.getElementById('tw-panel');if(!sd){p.innerHTML='<div class="tw-ph">Seleccioná un dia del calendario</div>';return;}var ds=sd.getDate()+'/'+(sd.getMonth()+1);var h='<div class="tw-lbl">Horarios \u2014 '+ds+'</div><div class="tw-slots">';SL.forEach(function(s){h+='<button class="tw-s'+(ss===s?' sl':'')+'" onclick="twS(\''+s+'\')">'+s+'</button>';});h+='</div>';if(ss){h+='<div class="tw-lbl">Tus datos</div><div class="tw-form"><input id="tw-n" placeholder="Nombre y apellido"><input id="tw-t" placeholder="Telefono / WhatsApp"><button class="tw-btn" onclick="twC()">Confirmar turno</button></div>';}p.innerHTML=h;}window.twS=function(s){ss=s;rp();};window.twC=function(){var n=document.getElementById('tw-n').value,t=document.getElementById('tw-t').value;if(!n||!t){alert('Completa nombre y telefono.');return;}document.getElementById('tw-panel').innerHTML='<div class="tw-ok">Turno reservado<br>'+sd.getDate()+'/'+(sd.getMonth()+1)+' a las '+ss+'<br><br>Te contactaremos para confirmar.</div>';};rc();rp();})();</script>
+<footer>Sitio web desarrollado por <a href="https://caludio.netlify.app">CALUD.IO</a> &mdash; Soluciones digitales para profesionales de la salud</footer>
+<a class="wa-float" href="#" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.524 5.835L0 24l6.332-1.505A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.001-1.371l-.36-.213-3.757.893.952-3.67-.234-.376A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg></a>
+</body>
+</html>
